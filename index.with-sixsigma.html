@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>고나현 | Portfolio</title>
+<meta name="description" content="고나현의 프로젝트와 활동 정리">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --ink:#0E0E0E; --ink-2:#4D4D4D; --ink-3:#8A8A8A; --line:#E6E8EC;
+    --blue:#1D6FE0; --blue-soft:#EEF4FF; --sel:#BFE3FF;
+    --folder:#62BBF7; --folder-tab:#4BA3EC; --tile:#F2F4F7;
+    --max:1320px; --pad:clamp(20px,4vw,56px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:64px}
+  body{
+    font-family:"Poppins","Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
+    background:#fff;color:var(--ink);font-size:15px;line-height:1.65;letter-spacing:-0.01em;
+    -webkit-font-smoothing:antialiased;word-break:keep-all;
+  }
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  button{font:inherit;color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+  .ko{font-family:"Pretendard Variable",Pretendard,sans-serif}
+
+  /* ---------- reveal on scroll ---------- */
+  [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  [data-reveal].in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    [data-reveal]{opacity:1;transform:none;transition:none}
+    *{animation-duration:.01ms!important;animation-iteration-count:1!important}
+  }
+
+  /* ---------- header ---------- */
+  header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+  header.top.scrolled{border-color:var(--line)}
+  .top-row{display:flex;align-items:center;justify-content:space-between;height:60px;font-size:14px}
+  .top-row b{font-weight:600}
+  .top-row nav{display:flex;gap:6px}
+  .top-row nav a{padding:6px 12px;border-radius:6px;color:var(--ink-2);transition:background .15s,color .15s}
+  .top-row nav a:hover{background:var(--blue);color:#fff}
+
+  /* ---------- selection-highlight heading ---------- */
+  .selh{position:relative;display:inline-block;padding:0 .16em;margin-left:10px}
+  .selh .bg{position:absolute;left:0;top:.14em;bottom:.04em;width:0;background:var(--sel);transition:width 1s cubic-bezier(.65,0,.15,1) .15s}
+  .selh .bar{position:absolute;width:4px;background:var(--blue);opacity:0;transition:opacity .25s ease 1.1s}
+  .selh .bar.l{left:-4px;top:.02em;bottom:.04em}
+  .selh .bar.r{right:-4px;top:.14em;bottom:-.08em}
+  .selh .dot{position:absolute;width:.16em;height:.16em;min-width:12px;min-height:12px;border-radius:50%;background:var(--blue);transform:scale(0);transition:transform .3s cubic-bezier(.2,.7,.2,1.4) 1.15s}
+  .selh .dot.l{left:-10px;top:-8px}
+  .selh .dot.r{right:-10px;bottom:-16px}
+  .selh .txt{position:relative}
+  .selh.in .bg{width:100%}
+  .selh.in .bar{opacity:1}
+  .selh.in .dot{transform:scale(1)}
+  .sec-title{font-size:clamp(44px,7vw,96px);line-height:1.08;font-weight:500;letter-spacing:-0.05em}
+  .sec-title sup{font-size:.24em;font-weight:500;color:var(--ink-3);letter-spacing:0;vertical-align:top;position:relative;top:.4em;margin-left:6px}
+
+  /* ---------- about ---------- */
+  .about{display:grid;grid-template-columns:minmax(0,520px) minmax(0,1fr);gap:clamp(40px,6vw,96px);padding:clamp(48px,7vw,96px) 0 40px;align-items:start}
+  .photo-col{display:flex;flex-direction:column;align-items:center;gap:28px;position:sticky;top:90px}
+  .photo{position:relative;width:min(400px,80vw);aspect-ratio:590/900}
+  .photo::before{content:"";position:absolute;left:8%;right:8%;bottom:2%;top:24%;background:radial-gradient(closest-side,#E8F2FF,transparent);z-index:0}
+  .photo img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(20,40,80,.16))}
+  .sticker{position:absolute;z-index:2;animation:bob 4.5s ease-in-out infinite}
+  .sticker.s1{left:-6%;top:56%;width:64px}
+  .sticker.s2{right:-4%;top:10%;width:56px;animation-delay:-1.6s}
+  .sticker.s3{left:2%;top:6%;width:40px;animation:spin 10s linear infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .dock{display:flex;gap:7px;padding:10px 14px;background:#EEF0F3;border-radius:24px;align-items:flex-end;flex-wrap:wrap;justify-content:center;max-width:100%}
+  .dock-item{position:relative;width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;letter-spacing:-0.02em;box-shadow:0 6px 14px -8px rgba(0,0,0,.45);transition:transform .2s cubic-bezier(.2,.7,.2,1);cursor:default}
+  .dock-item:hover{transform:translateY(-10px) scale(1.22)}
+  .dock-item .tip{position:absolute;bottom:52px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--ink);color:#fff;font-size:11px;font-weight:500;padding:4px 8px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .15s}
+  .dock-item:hover .tip{opacity:1}
+  .about-text{display:flex;flex-direction:column;gap:34px;padding-top:10px}
+  .namecard{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-top:-6px}
+  .namecard .nm{font-size:clamp(40px,4.4vw,60px);font-weight:700;letter-spacing:-0.04em;line-height:1}
+  .namecard .en{font-size:clamp(18px,1.8vw,24px);font-weight:500;color:var(--ink-3);letter-spacing:-0.01em}
+  .intro{font-size:clamp(17px,1.5vw,20px);line-height:1.85;color:#2E2E2E;max-width:40em}
+  .intro i{font-style:italic;font-weight:600;color:var(--ink)}
+  .block h3{font-size:19px;font-weight:600;margin-bottom:16px}
+  .edu-row{display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;align-items:center}
+  .edu-row + .edu-row{margin-top:14px}
+  .edu-row b{display:block;font-size:16.5px;font-weight:600}
+  .edu-row span{font-size:13.5px;color:var(--ink-2);font-style:italic}
+  .bubbles{display:flex;flex-wrap:wrap;gap:16px 10px}
+  .bub{position:relative;border-radius:20px;padding:10px 20px;font-size:14.5px;line-height:1.3;opacity:0;transform:scale(.6) translateY(10px)}
+  .bub b{font-weight:600}
+  .bub.blue{background:var(--blue);color:#fff}
+  .bub.soft{background:var(--blue-soft);color:#1D4FB0}
+  .bub svg{position:absolute;bottom:-6px}
+  .bub:nth-child(odd) svg{left:16px}
+  .bub:nth-child(even) svg{right:16px}
+  .bubbles.in .bub{animation:bubble .55s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes bubble{0%{opacity:0;transform:scale(.6) translateY(10px)}70%{opacity:1;transform:scale(1.04)}100%{opacity:1;transform:none}}
+  .contact-line{display:flex;flex-wrap:wrap;gap:10px;font-size:14px}
+  .contact-line a{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ink);border-radius:999px;padding:9px 18px;font-weight:500;transition:background .2s,color .2s}
+  .contact-line a:hover{background:var(--ink);color:#fff}
+
+  /* ---------- projects desktop ---------- */
+  section.block-sec{padding-top:clamp(88px,11vw,150px)}
+  .desk{position:relative;height:900px;margin-top:20px;border-radius:24px;background:
+      radial-gradient(circle at 1px 1px,#E3E7EE 1px,transparent 1.4px) 0 0/26px 26px,#FBFCFE;border:1px solid var(--line);overflow:hidden}
+  .desk-center{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;pointer-events:none}
+  .desk-center .sec-title{font-size:clamp(56px,7vw,104px)}
+  .desk-center p{font-size:14px;color:var(--ink-2)}
+  .ctx{position:absolute;left:41%;top:63%;width:188px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 18px 40px -18px rgba(0,0,0,.3);padding:6px;font-size:13.5px;display:flex;flex-direction:column;pointer-events:none}
+  .ctx span{padding:7px 12px;border-radius:6px}
+  .ctx span.on{background:var(--blue);color:#fff}
+  .ctx span.off{color:#A3A3A3}
+  .ctx svg{position:absolute;right:-14px;top:50px;animation:nudge 2.4s ease-in-out infinite}
+  @keyframes nudge{0%,100%{transform:translate(0,0)}50%{transform:translate(-6px,-4px)}}
+  .folder{position:absolute;width:164px;border:0;background:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;transform:translateY(18px) scale(.9)}
+  .desk.in .folder{animation:popIn .7s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes popIn{to{opacity:1;transform:none}}
+  .folder .ic{animation:bob 4.2s ease-in-out infinite}
+  .folder .ic svg{display:block;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .folder:hover .ic svg,.folder:focus-visible .ic svg{transform:scale(1.1)}
+  .folder .lb{font-size:14.5px;font-weight:500;padding:2px 8px;border-radius:5px;text-align:center;line-height:1.35;transition:background .15s,color .15s}
+  .folder:hover .lb,.folder:focus-visible .lb{background:var(--blue);color:#fff}
+  .folder .yr{font-size:12px;color:var(--ink-3)}
+  .folder .badge{position:absolute;top:-4px;right:18px;font-size:10.5px;font-weight:600;background:#FFD24D;color:#5A4300;border-radius:999px;padding:1px 7px}
+  .folder:focus-visible{outline:none}
+
+  /* ---------- finder window ---------- */
+  dialog.finder{border:0;padding:0;width:min(1120px,calc(100vw - 32px));height:min(780px,calc(100vh - 40px));margin:auto;border-radius:14px;background:#fff;color:var(--ink);box-shadow:0 40px 100px -30px rgba(0,0,0,.45);overflow:hidden}
+  dialog.finder[open]{display:flex;flex-direction:column;animation:winIn .4s cubic-bezier(.2,.7,.2,1)}
+  @keyframes winIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+  dialog.finder::backdrop{background:rgba(245,248,252,.6);backdrop-filter:blur(4px)}
+  .fbar{height:48px;flex:0 0 48px;display:flex;align-items:center;gap:8px;padding:0 16px;border-bottom:1px solid #ECEEF1;background:#F7F8FA}
+  .fbar .d{width:13px;height:13px;border-radius:50%;border:0;padding:0}
+  .fbar .d.r{background:#FF5F57;cursor:pointer}
+  .fbar .d.r:hover{filter:brightness(.85)}
+  .fbar .d.y{background:#FEBC2E}.fbar .d.g{background:#28C840}
+  .fbar .t{flex:1;text-align:center;font-size:13.5px;font-weight:500;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fbody{flex:1;min-height:0;display:grid;grid-template-columns:230px minmax(0,1fr)}
+  .fside{border-right:1px solid #ECEEF1;background:#FBFBFC;padding:12px 10px;overflow-y:auto;display:flex;flex-direction:column;gap:2px}
+  .fside .cap{font-size:11px;color:var(--ink-3);padding:4px 10px 8px}
+  .fside button{display:flex;align-items:center;gap:8px;border:0;background:transparent;text-align:left;font-size:13px;padding:7px 10px;border-radius:6px;cursor:pointer;line-height:1.35}
+  .fside button:hover{background:var(--blue-soft)}
+  .fside button.on{background:var(--blue);color:#fff}
+  .fside svg{flex:0 0 16px}
+  .fmain{overflow-y:auto;padding:32px clamp(20px,3vw,40px) 48px}
+
+  /* detail content */
+  .dh .meta{font-size:12.5px;color:var(--ink-3)}
+  .dh h3{font-size:clamp(28px,3.4vw,40px);font-weight:600;letter-spacing:-0.04em;line-height:1.15;margin:6px 0 10px}
+  .dh .one{font-size:16px;color:var(--ink-2);max-width:42em}
+  .dh .badge{display:inline-block;font-size:12px;font-weight:600;background:#FFD24D;color:#5A4300;border-radius:999px;padding:1px 9px;margin-left:10px;vertical-align:8px}
+  dl.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0 8px;padding:16px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
+  dl.facts dt{font-size:12px;color:var(--ink-3)}
+  dl.facts dd{font-size:14px;margin-top:4px}
+  .ds{padding:30px 0 4px;border-top:1px solid var(--line);margin-top:8px}
+  .ds-h{display:flex;align-items:baseline;gap:10px;margin-bottom:16px}
+  .ds-n{font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+  .ds-h h4{font-size:17px;font-weight:600;letter-spacing:-0.02em}
+  .ov{font-size:15px;color:#2E2E2E;line-height:1.75}
+  .shots{display:grid;gap:12px;margin-top:20px}
+  .shots figure{background:var(--tile);border-radius:8px;overflow:hidden}
+  .shots video{display:block;width:100%;height:auto;background:#000}
+  .feat{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .feat li{border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+  .feat b{display:block;font-size:14.5px;font-weight:600;margin-bottom:4px}
+  .feat span{font-size:13.5px;color:var(--ink-2);line-height:1.6}
+  .stk{display:grid;gap:10px}
+  .stk > div{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:baseline}
+  .stk dt{font-size:12.5px;color:var(--ink-3)}
+  .stk dd{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-size:12.5px;border-radius:999px;padding:3px 10px;background:var(--blue-soft);color:#1D4FB0}
+  .af{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:16px;background:var(--tile);border-radius:8px}
+  .af + .af{margin-top:8px}
+  .af-node{display:inline-block;background:#fff;border:1px solid #DCE1E8;border-radius:6px;padding:7px 12px;font-size:13px;line-height:1.4}
+  .af-par{display:flex;flex-direction:column;gap:6px}
+  .af-arrow{color:var(--ink-3);font-size:14px}
+  .ts{border:1px solid var(--line);border-radius:8px;padding:18px 20px}
+  .ts + .ts{margin-top:12px}
+  .ts-t{font-size:15px;font-weight:600;letter-spacing:-0.02em;margin-bottom:12px}
+  .ts-t span{font-size:11px;color:var(--ink-3);font-weight:500;margin-right:10px}
+  .ts dl{display:grid;gap:8px}
+  .ts dl > div{display:grid;grid-template-columns:44px 1fr;gap:12px}
+  .ts dt{font-size:12.5px;color:var(--ink-3);padding-top:2px}
+  .ts dd{font-size:14.5px;color:#2E2E2E;line-height:1.65}
+  .ts dl > div:last-child dd{color:var(--ink);font-weight:500}
+  .lnk{list-style:none;display:grid;gap:8px}
+  .lnk a{display:inline-flex;gap:10px;font-size:15px;font-weight:500;border-bottom:1px solid var(--ink);padding-bottom:2px}
+  .lnk a span{color:var(--ink-3);font-weight:400}
+
+  /* ---------- experience ---------- */
+  .idx{border-top:1px solid var(--ink);margin-top:32px}
+  .irow{display:grid;grid-template-columns:40px minmax(0,1.1fr) minmax(0,1.6fr) 150px;gap:24px;padding:22px 0;border-bottom:1px solid var(--line);transition:background .2s}
+  .irow:hover{background:#FAFBFD}
+  .irow .n{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;padding-top:4px}
+  .irow h3{font-size:18px;font-weight:600;letter-spacing:-0.02em;line-height:1.4}
+  .irow .org{font-size:13px;color:var(--ink-3);margin-top:2px}
+  .irow p{font-size:14px;color:var(--ink-2)}
+  .irow .res{margin-top:6px;color:var(--ink)}
+  .irow .d{font-size:13px;color:var(--ink-3);text-align:right;font-variant-numeric:tabular-nums;padding-top:3px}
+
+  /* ---------- skills ---------- */
+  .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+  .sk{border:1px solid var(--line);border-radius:14px;padding:20px 22px;background:#fff;transition:transform .25s,box-shadow .25s}
+  .sk:hover{transform:translateY(-4px);box-shadow:0 18px 40px -26px rgba(0,0,0,.35)}
+  .sk h3{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;margin-bottom:12px}
+  .sk p{font-size:14px;color:var(--ink-2);line-height:1.7}
+
+  /* ---------- footer ---------- */
+  footer.wrap{padding-top:clamp(110px,13vw,180px);padding-bottom:32px}
+  footer .big{font-size:clamp(52px,10vw,150px);line-height:.95;letter-spacing:-0.06em;font-weight:600}
+  footer .thanks{margin-top:20px;font-size:16px;color:var(--ink-2)}
+  footer .mail{display:inline-block;margin-top:22px;font-size:clamp(18px,2.2vw,26px);font-weight:500;border-bottom:1px solid var(--ink)}
+  footer .bottom{margin-top:clamp(72px,9vw,120px);display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:16px;font-size:12px;color:var(--ink-3)}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .about{grid-template-columns:1fr}
+    .photo-col{position:static}
+    .skills{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:860px){
+    .top-row nav a{padding:6px 8px}
+    .desk{height:auto;padding:28px 16px 32px;display:grid;grid-template-columns:repeat(2,1fr);gap:28px 8px}
+    .desk-center{position:static;transform:none;grid-column:1 / -1;margin-bottom:8px}
+    .ctx{display:none}
+    .folder{position:static;width:auto}
+    .irow{grid-template-columns:28px 1fr;gap:4px 12px}
+    .irow > div:nth-child(3),.irow .d{grid-column:2}
+    .irow .d{text-align:left;order:-1;grid-row:1;padding-top:0}
+    .irow .n{grid-row:1 / span 3}
+    .fbody{grid-template-columns:1fr}
+    .fside{display:none}
+    dl.facts{grid-template-columns:1fr 1fr}
+    .feat{grid-template-columns:1fr}
+    .stk > div{grid-template-columns:1fr;gap:6px}
+    .af{flex-direction:column;align-items:stretch}
+    .af-arrow{transform:rotate(90deg);align-self:center}
+    footer .bottom{flex-direction:column}
+  }
+  @media (max-width:560px){
+    .top-row nav{display:none}
+    .skills{grid-template-columns:1fr}
+  }
+  @media print{
+    header.top{display:none}
+    [data-reveal]{opacity:1;transform:none}
+    .bub{opacity:1;transform:none}
+    .folder{opacity:1;transform:none;position:static}
+    .desk{height:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:24px}
+    .desk-center{position:static;transform:none;grid-column:1 / -1}
+    .ctx{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="top" id="top-bar">
+  <div class="wrap top-row">
+    <a href="#top"><b>Portfolio</b></a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+  <section class="about" id="about">
+    <div class="photo-col" data-reveal>
+      <div class="photo">
+        <svg class="sticker s3" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2v10M20 28v10M2 20h10M28 20h10M7 7l7 7M26 26l7 7M33 7l-7 7M14 26l-7 7" stroke="#1D6FE0" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <svg class="sticker s2" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 48C14 39 6 30 6 21a11 11 0 0122-3 11 11 0 0122 3c0 9-8 18-22 27z" fill="#FF8FBC" stroke="#E04A86" stroke-width="2"/></svg>
+        <svg class="sticker s1" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 8l5 15 16 1-12 10 4 16-13-9-13 9 4-16-12-10 16-1z" fill="#FFD24D" stroke="#E8A900" stroke-width="2"/></svg>
+        <img src="images/profile-cutout.png" alt="고나현 사진">
+      </div>
+      <div class="dock" id="dock" aria-label="주요 기술"></div>
+    </div>
+
+    <div class="about-text">
+      <h1 class="sec-title"><span class="selh" data-reveal><span class="bg"></span><span class="bar l"></span><span class="bar r"></span><span class="dot l"></span><span class="dot r"></span><span class="txt">about me</span></span></h1>
+      <div class="namecard" data-reveal><span class="nm ko">고나현</span><span class="en">Nahyun Go</span></div>
+      <p class="intro ko" data-reveal>산업공학을 공부하며 공정과 데이터를 숫자로 보는 법을 배웠고, 지금은 그 시각을 웹 서비스와 AI로 직접 만들어 보고 있습니다.</p>
+
+      <div class="block" data-reveal>
+        <h3>Education</h3>
+        <div class="edu-row">
+          <svg width="64" height="52" viewBox="0 0 112 90" aria-hidden="true"><path d="M4 14a8 8 0 018-8h28l9 9h51a8 8 0 018 8v4H4z" fill="#4BA3EC"/><rect x="4" y="22" width="104" height="64" rx="8" fill="#62BBF7"/></svg>
+          <div class="ko"><b>국립공주대학교 산업공학과 학사</b><span>2022.03 – 2026.02 · GPA 3.59 / 4.5</span></div>
+        </div>
+        <div class="edu-row">
+          <svg width="64" height="52" viewBox="0 0 112 90" aria-hidden="true"><path d="M4 14a8 8 0 018-8h28l9 9h51a8 8 0 018 8v4H4z" fill="#4BA3EC"/><rect x="4" y="22" width="104" height="64" rx="8" fill="#62BBF7"/></svg>
+          <div class="ko"><b>용화여자고등학교 졸업</b><span>2019.03 – 2022.02 · 서울</span></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3 data-reveal>Award &amp; Certificates</h3>
+        <div class="bubbles ko" data-reveal-bubbles>
+          <span class="bub blue"><b>최우수상</b> — 한국설비안전학회 대학생 부문 (2024)<svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 0h16L4 12z" fill="#1D6FE0"/></svg></span>
+          <span class="bub soft"><b>ADsP</b> — 데이터분석 준전문가<svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 0h16L12 12z" fill="#EEF4FF"/></svg></span>
+          <span class="bub blue"><b>SQLD</b> — SQL 개발자<svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 0h16L4 12z" fill="#1D6FE0"/></svg></span>
+          <span class="bub soft"><b>TOEIC Speaking</b> — Level 6<svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 0h16L12 12z" fill="#EEF4FF"/></svg></span>
+          <span class="bub blue"><b>한국사능력검정</b> — 3급<svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 0h16L4 12z" fill="#1D6FE0"/></svg></span>
+        </div>
+      </div>
+
+      <div class="contact-line" data-reveal>
+        <a href="mailto:hy32214@naver.com">hy32214@naver.com ↗</a>
+        <a href="#projects">프로젝트 보기 ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block-sec" id="projects">
+    <div class="desk" id="desk" aria-label="프로젝트 폴더">
+      <div class="desk-center">
+        <h2 class="sec-title">Projects<sup id="pcount"></sup></h2>
+        <p class="ko">폴더를 누르면 프로젝트가 열려요</p>
+      </div>
+      <div class="ctx ko" aria-hidden="true">
+        <span>열기</span><span class="on">미리보기</span><span>정보 가져오기</span><span class="off">복사</span>
+        <svg width="26" height="30" viewBox="0 0 26 30"><path d="M2 2l20 13-9 2 5 10-4 2-5-10-7 6z" fill="#fff" stroke="#0E0E0E" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="block-sec" id="experience">
+    <h2 class="sec-title"><span class="selh" data-reveal><span class="bg"></span><span class="bar l"></span><span class="bar r"></span><span class="dot l"></span><span class="dot r"></span><span class="txt">experience</span></span><sup>(05)</sup></h2>
+    <div class="idx">
+      <div class="irow ko" data-reveal>
+        <div class="n">01</div>
+        <div><h3>삼성청년SW·AI아카데미</h3><div class="org">SSAFY</div></div>
+        <div><p>생성형 AI 작동 원리, AI 코딩 어시스턴트 활용, MCP 기반 챗봇과 AI 뉴스 큐레이션 웹 서비스 구현, LangChain·Agent, 파인튜닝, AI 거버넌스(윤리·데이터 보안)를 학습했습니다.</p></div>
+        <div class="d">2026.01 – 2026.12</div>
+      </div>
+      <div class="irow ko" data-reveal>
+        <div class="n">02</div>
+        <div><h3>알고리즘 스터디</h3><div class="org">주 1회 · 노션 기록</div></div>
+        <div><p>매주 1문제 이상을 풀고 '문제 링크 → 접근 아이디어 → 핵심 로직 → 복잡도 → 코드' 순서로 정리해 공유합니다.</p><p class="res">비슷한 유형 접근 시간 1시간 이상 → 20~30분</p></div>
+        <div class="d">2026.01 – 현재</div>
+      </div>
+      <div class="irow ko" data-reveal>
+        <div class="n">03</div>
+        <div><h3>도봉구청 사무보조</h3><div class="org">민원여권과</div></div>
+        <div><p>서고 자료 전체를 3명이 구역을 나눠 엑셀로 목록화했습니다. 정렬·필터로 빈칸과 중복값을 찾아 원본과 대조했습니다.</p><p class="res">약 800건 2주 내 목록화 · 최종 누락 0건</p></div>
+        <div class="d">2025.07</div>
+      </div>
+      <div class="irow ko" data-reveal>
+        <div class="n">04</div>
+        <div><h3>학과 학생회 홍보부</h3><div class="org">인스타그램 채널 운영</div></div>
+        <div><p>게시물 기획, 템플릿 제작, 업로드 일정 관리를 맡았습니다. 행사 정보를 D-5까지 구글폼으로 받고 공지·후기·모집 3종 템플릿으로 제작을 표준화했습니다.</p><p class="res">공지 게시 시점 행사 전날·당일 → 대부분 D-2~D-3</p></div>
+        <div class="d">2022.03 – 2025.06</div>
+      </div>
+      <div class="irow ko" data-reveal>
+        <div class="n">05</div>
+        <div><h3>봉사동아리 RCY</h3><div class="org">지역아동센터 방과후 프로그램</div></div>
+        <div><p>주 1회 초등학생 약 15명과 함께하는 활동에서 활동 후보 제안과 준비물 담당을 맡았습니다.</p></div>
+        <div class="d">2022.03 – 2022.12</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block-sec" id="skills">
+    <h2 class="sec-title"><span class="selh" data-reveal><span class="bg"></span><span class="bar l"></span><span class="bar r"></span><span class="dot l"></span><span class="dot r"></span><span class="txt">skills</span></span></h2>
+    <div class="skills ko">
+      <div class="sk" data-reveal><h3>언어 · 데이터</h3><p>Python, JavaScript, SQL, Pandas, NumPy, Matplotlib, Selenium</p></div>
+      <div class="sk" data-reveal><h3>머신러닝 · AI</h3><p>PyTorch, KoBERT, KIWI, LDA, LLM Prompting, MCP, LangChain, Agents</p></div>
+      <div class="sk" data-reveal><h3>웹 개발</h3><p>React, Vue 3, Vite, three.js, Django, Django REST Framework, Spring Boot</p></div>
+      <div class="sk" data-reveal><h3>데이터베이스 · 인프라</h3><p>PostgreSQL, SQLite, Flyway, Docker Compose, GitLab CI</p></div>
+      <div class="sk" data-reveal><h3>협업 도구</h3><p>Git, GitLab, Jira, Figma, Notion</p></div>
+      <div class="sk" data-reveal><h3>공정 · 품질</h3><p>DMAIC, C&amp;E Matrix, FMEA, 가설검정, Minitab, Excel</p></div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact" class="wrap">
+  <div class="big" data-reveal>Thank you.</div>
+  <p class="thanks ko" data-reveal>포트폴리오를 봐 주셔서 감사합니다. 궁금한 점은 메일로 편하게 연락 주세요.</p>
+  <a class="mail" href="mailto:hy32214@naver.com" data-reveal>hy32214@naver.com ↗</a>
+  <div class="bottom"><span>© 2026 고나현 Nahyun Go</span><span>Seoul, Korea</span></div>
+</footer>
+
+<dialog class="finder" id="finder" aria-label="프로젝트 상세">
+  <div class="fbar">
+    <button class="d r" type="button" aria-label="창 닫기" id="finder-close"></button>
+    <span class="d y" aria-hidden="true"></span><span class="d g" aria-hidden="true"></span>
+    <span class="t" id="finder-title"></span>
+    <span style="width:55px"></span>
+  </div>
+  <div class="fbody">
+    <nav class="fside" id="finder-side" aria-label="프로젝트 목록"><span class="cap">프로젝트</span></nav>
+    <div class="fmain ko" id="finder-main"></div>
+  </div>
+</dialog>
+
+<script>
+/* =========================================================
+   프로젝트 데이터 — 여기만 고치면 폴더와 상세 창이 같이 바뀝니다.
+   ========================================================= */
+const PROJECTS = [
+  {
+    id:'dongle',
+    title:'동글서울',
+    type:'SSAFY 자율 프로젝트', period:'2026.10 – 2026.11', team:'6인',
+    one:'실제 서울 25개 구 모양의 섬을 주민 캐릭터로 돌아다니며 명소를 구경하고 미니게임을 즐기는 3D 멀티플레이 웹 게임',
+    overview:'접속한 모든 사용자가 같은 서울섬 하나에 들어와 서로 보고, 채팅하고, 인사할 수 있습니다. 섬 곳곳의 상점에서 옷·가구·헤어·외모를 사서 꾸미고, 집을 사고 넓힐 수 있습니다. 사람처럼 접속해 생활하는 AI 주민과, 사진이나 그림으로 나만의 3D 자동차를 만들어 타는 기능도 있습니다.',
+    features:[
+      ['손그림 → 3D 모델','손그림 한 장을 Hunyuan3D-2mv로 3D 모델로 만들고, 게임 규격(길이·방향)에 맞추고 표면을 단순화해 자동차·총·보트로 사용'],
+      ['AI 주민 (에이전트)','목표·성향·가진 돈·최근 활동을 보고 낚시·게임·산책 같은 다음 행동을 스스로 고르는 AI 주민. 정합성과 실행 가능성을 검사한 뒤 실행하고, 결과를 경험으로 기록해 다음 판단에 사용'],
+      ['대규모 실시간 멀티플레이','하나의 공유 섬 서버에 사람과 AI 주민이 함께 접속해 서로 보고, 채팅·인사하고, 만든 자동차로 함께 달리기'],
+      ['3D 서울섬 탐험','실제 25개 구 모양의 섬과 명소를 three.js로 구현'],
+      ['미니게임 23종','아레나·레이싱 등 주민이 준비한 미니게임과 최고 기록·랭킹'],
+      ['집·캐릭터 꾸미기','가구점·홈데코, 옷가게·옷장, 미용실·성형외과에서 사서 꾸미기'],
+      ['생활·경제','낚시·농사로 돈을 벌고, 집을 사고 넓히는 부동산'],
+    ],
+    stack:{
+      Frontend:['React 19','Vite','three.js','JavaScript','WebSocket'],
+      Backend:['Spring Boot 4','Java 21','Flyway'],
+      Database:['PostgreSQL','파일 저장소 (MinIO)'],
+      AI:['Hunyuan3D-2mv','trimesh','PyMeshLab','Ollama (LLM Relay)','헤드리스 브라우저 에이전트'],
+      Infra:['AWS EC2','Nginx (부하 분산)','별도 GPU PC','Docker Compose','GitLab CI'],
+    },
+    arch:[
+      ['유저 · AI 에이전트 실행기','Nginx (부하 분산)',['Main 서버 · 로그인 · 월드 · API','Mini Game 서버 · Arena · Racing'],['PostgreSQL · 계정 · 재화 · 결과','파일 저장소 · 이미지 · 3D 파일']],
+      ['손그림 업로드','3D Worker (GPU PC · Hunyuan3D)','trimesh 규격 맞추기 · PyMeshLab 단순화','three.js 렌더링','WebSocket으로 함께 달리기'],
+      ['AI 주민 판단 준비 (목표 · 성향 · 상태 · 경험)','LLM Relay (GPU PC · Ollama) 행동 선택','정합성 · 실행 가능성 검사 후 실행','결과를 경험으로 기록'],
+    ],
+    trouble:[
+      { t:'저사양 노트북에서 섬 화면이 버벅이던 문제',
+        problem:'내장 그래픽(Intel Iris Xe)에서 시작 위치의 GPU 시간이 프레임당 25ms, 타이틀 화면은 47ms까지 걸려 화면이 끊겼습니다.',
+        cause:'카메라에 보이지 않는 나무·꽃·강둑까지 매 프레임 그렸고, 먼 곳의 식물도 가까운 것과 같은 정밀도로 그렸습니다. 공유 재질 때문에 매 프레임 셰이더 프로그램을 다시 고르는 비용도 있었습니다.',
+        solve:'큰 합본 메시를 32칸 구역으로 나눠 카메라 컬링을 적용하고, 먼 구역의 나무·덤불·꽃은 LOD 모양으로 바꿨습니다. 해 그림자는 2프레임에 한 번 그리고, 인스턴싱용 재질을 분리했습니다.',
+        result:'프레임당 삼각형이 599만 개에서 250만 개로, GPU 시간이 25ms에서 12ms로 줄었습니다. 타이틀 화면은 1,686만 개 → 325만 개, 47ms → 15ms가 됐습니다.' },
+      { t:'처음 보는 장소에서 화면이 순간 멈추던 문제',
+        problem:'게임 중 새 장소가 처음 화면에 들어올 때 391ms, 511ms씩 화면이 멈췄습니다.',
+        cause:'compileAsync는 화면 셰이더만 미리 만들어서, 큰 랜드마크 지오메트리와 그림자 셰이더는 처음 보이는 프레임에 GPU로 올라가고 컴파일됐습니다.',
+        solve:'로딩 화면에서 섬 전체를 1×1 크기로 그림자와 함께 한 번 그려 GPU에 미리 올렸습니다. 섬에서 3초 내내 40fps 아래면 해상도 배율을 단계적으로 낮추게 했습니다.',
+        result:'순간이동 11곳 측정에서 게임 중 지오메트리 업로드와 셰이더 컴파일이 0회가 됐습니다.' },
+      { t:'다른 주민이 낮은 좌석에 앉으면 공중에 떠 보이던 문제',
+        problem:'같은 방에 있는 다른 주민이 방석처럼 낮은 좌석에 앉으면 허공에 떠 있는 것처럼 보였습니다.',
+        cause:'멀티플레이로 전달받은 다른 사용자의 앉은 자세를 소파·의자 기준 높이 하나로 그리고 있었습니다.',
+        solve:'전달받은 위치에서 가장 가까운 좌석의 실제 높이로 그리고, 좌석을 알 수 없을 때만 기본 높이를 쓰도록 바꿨습니다.',
+        result:'높이 0.15인 방석 같은 낮은 좌석에서도 다른 주민의 앉은 모습이 정확히 보입니다.' },
+    ],
+    links:[],
+  },
+  {
+    id:'malo',
+    title:'MALO — My Agent for Linked Orders',
+    type:'SSAFY 핀테크 특화 프로젝트', period:'2026.08 – 2026.09', team:'5인',
+    one:'말로 입력한 투자 아이디어를 검증 가능한 전략 규칙으로 바꾸고, 사용자가 승인한 전략만 내 PC에서 모의투자로 실행하는 개인 투자 에이전트',
+    overview:'AI는 자연어를 전략 규칙(DSL)으로 바꾸는 역할만 하고, 사용자가 승인한 버전만 LLM 개입 없이 상태 머신이 여러 날 실행합니다. 토스 키·전략·데이터는 사용자 PC를 떠나지 않으며, 기본은 모의투자 모드입니다.',
+    features:[
+      ['말로 전략 만들기','채팅으로 아이디어를 말하면 AI가 전략 초안을 만들고, 승인 카드에서 확인한 뒤 등록'],
+      ['전략 템플릿','이평선·눌림목·RSI·MACD 등 전략 카드 9종과 등록 폼'],
+      ['시세','종목 리스트·차트·호가창·분봉·투자자 매매동향, SSE 실시간 시세'],
+      ['백테스트','과거 데이터로 전략을 재생해 수익률 곡선 확인'],
+      ['모의 자금 관리','가상 잔액 입금·출금·환전'],
+      ['랭킹 리그','전략을 리그에 올려 순위 비교'],
+    ],
+    stack:{
+      Frontend:['React','TypeScript','Vite','Tailwind CSS v4','Vitest'],
+      'CI / Build':['GitLab CI'],
+      Backend:['Spring Boot','Spring Data JPA','H2 파일 DB','PostgreSQL (랭킹 서버)','SSE'],
+      AI:['MCP 도구 37종','Codex · Claude 에이전트 게이트웨이','LM Studio (로컬 폴백)'],
+      'External API':['토스증권 Open API'],
+    },
+    arch:[
+      ['웹 채팅 · 외부 MCP 클라이언트','에이전트 게이트웨이 (Codex · Claude · 로컬 LLM)','MALO MCP (stdio)','Core Backend · 검증 · 승인 게이트 · 상태 머신','실행 엔진 → 토스 API'],
+    ],
+    trouble:[
+      { t:'시세 차트가 간헐적으로 500 에러를 내던 문제',
+        problem:'시세 탭 차트가 가끔 "Internal Server Error"를 냈습니다. 서버 로그에는 OptimisticLockingFailureException과 "expected row count 1 but was 0"이 남았습니다.',
+        cause:'두 원인이 겹쳤습니다. 장중 진행 중인 오늘 봉의 종가가 호출마다 달라 매번 "수정주가 소급"으로 오인해 캐시를 통째로 지웠고, 같은 종목 요청이 동시에 들어오면 둘 다 같은 행을 지우다 뒤쪽 삭제가 0행이 되어 실패했습니다.',
+        solve:'확정된 과거 봉만 캐시에 대조·저장하고 오늘 봉은 응답 끝에만 붙였습니다. 같은 종목 요청은 종목별 락으로 줄 세우고, 트랜잭션을 락 안에서 열고 커밋까지 끝내게 했습니다. 캐시 삭제는 일괄 삭제 쿼리로, 봉마다 하던 조회 200회는 구간 조회 1회로 바꿨습니다.',
+        result:'차트 500 에러가 사라졌고, 뒤 요청은 앞 요청이 채운 캐시를 써서 외부 API를 다시 부르지 않게 됐습니다.' },
+      { t:'앱을 켤 때 등록 전 날짜까지 전략을 평가하던 문제',
+        problem:'추석 연휴 중인 일요일(9/27)에 만든 전략을, 앱을 켤 때 연휴 전 마지막 거래일(9/23) 기준으로 평가했습니다. 밀린 날을 확인해도 하루씩 밀려 같은 확인 요청이 계속 반복됐습니다.',
+        cause:'기동 시 따라잡기가 전략의 등록 시점을 모른 채 지난 거래일을 평가했고, 저장할 때 행 전체를 덮어써 일부 값이 지워질 수 있었습니다. 밀린 날 확인은 마지막 밀린 날까지만 처리해서, 확인을 요구한 그 평가일이 남아 다음 마감에 또 밀린 날로 세어졌습니다.',
+        solve:'전략에 등록 시각을 기록하고, 등록 뒤에 장이 마감된 거래일만 평가하게 했습니다(국내 15:40 이후 등록이면 그날도 제외). 그날 평가 기록이 있으면 다시 돌리지 않고, 밀린 날 확인 시에는 마감이 지난 거래일을 모두 건너뛴 뒤 다음 마감부터 다시 평가하게 했습니다. 확인 처리는 계좌 초기화와 겹치지 않게 평가 경계 안에서 실행했습니다.',
+        result:'등록 전 날짜를 평가하는 일과 같은 확인 요청이 되풀이되는 일이 사라졌습니다.' },
+      { t:'랭킹 제출 중 닉네임이 바뀌면 순위가 꼬이던 문제',
+        problem:'모의투자 결과를 랭킹 서버에 제출하는 도중 닉네임을 바꾸면 옛 이름의 행이 남아 다른 사람 기록처럼 보였습니다. 특정 문자가 들어간 닉네임은 저장 시 500 에러가 났습니다.',
+        cause:'결과 제출과 닉네임 변경이 서로를 기다리지 않아 경쟁 조건이 생겼습니다. "ß"처럼 대소문자 정규화 후 길어지는 문자는 20자 제한 키에 걸려 DB 오류로 이어졌습니다. 랭킹 서버가 느리면 Core가 닉네임 저장 잠금을 오래 쥐고 있었습니다.',
+        solve:'결과 제출 트랜잭션 안에서 프로필 행을 잠그고 닉네임을 다시 읽게 했고, 실제 PostgreSQL에서 두 방향의 경합을 재현해 확인했습니다. 정규화 후 길이가 넘는 닉네임은 400으로 거절했습니다. Core의 랭킹 서버 호출에는 연결 3초·응답 10초 타임아웃을 두고, 요청 제한(429)은 Retry-After로 "N분 뒤에 다시 해 주세요"라고 안내했습니다.',
+        result:'순위표에 잘못된 이름이 남지 않고, 서버 오류(500) 대신 명확한 입력 오류(400)로 응답하며, 외부 서버 지연이 잠금 점유로 번지지 않게 됐습니다.' },
+    ],
+    links:[],
+  },
+  {
+    id:'qubi',
+    title:'Qubi',
+    type:'SSAFY 공통 프로젝트', period:'2026.07 – 2026.08', team:'5인',
+    one:'아이디어를 말하면 AI가 HTML 미니게임을 만들어 주고, 등록·플레이·공유할 수 있는 서비스와 오프라인 Chrome 확장 프로그램',
+    overview:'웹에서는 AI가 요구사항을 분석해 게임을 생성하고, Chrome 확장 프로그램에서는 브라우저 안에서 도는 로컬 모델로 인터넷 없이 게임을 수정하고 플레이할 수 있습니다.',
+    features:[
+      ['AI 게임 생성','장르·조작·목표 요구사항 분석 → 게임 설계 → HTML 게임 생성'],
+      ['게임 갤러리','장르 필터 7종·정렬·카드 그리드, 검색'],
+      ['등록·공유·프로필','만든 게임을 게시하고 다른 사용자의 프로필과 게임 보기'],
+      ['Chrome 확장 플레이어','내 게임 목록, 전체화면 플레이어, AI 에디터'],
+      ['오프라인 AI 수정','브라우저 안 로컬 모델(Wllama·GGUF)을 내려받아 인터넷 없이 게임 수정'],
+      ['로그인','Google OAuth + JWT'],
+    ],
+    stack:{
+      Frontend:['React 19','TypeScript','Vite','React Router','CSS Modules'],
+      Extension:['Chrome Extension','IndexedDB','File System Access API','Wllama'],
+      Backend:['Spring Boot 4.1','Java 21','JWT','Google OAuth','Flyway'],
+      Database:['PostgreSQL 17'],
+      AI:['FastAPI','gpt-4o-mini (OpenAI 호환 API)'],
+    },
+    arch:[
+      ['React 웹',['Spring Boot API','FastAPI AI 서버'],['PostgreSQL','gpt-4o-mini']],
+      ['Chrome 확장','샌드박스 플레이어',['IndexedDB · 게임 폴더','Wllama 로컬 모델']],
+    ],
+    trouble:[
+      { t:'로컬 AI 수정이 느리고 잘린 코드가 게임에 적용되던 문제',
+        problem:'브라우저 안의 0.5B 모델로 게임을 고치면 응답이 오래 걸렸고, 큰 함수에서는 생성이 중간에 끊긴 코드가 그대로 적용되어 게임이 깨졌습니다.',
+        cause:'AI에게 함수 전체를 다시 쓰게 해서 출력 토큰이 함수 크기에 묶여 있었습니다(render 함수 1,607토큰). 출력 한도를 입력과 따로 계산해 컨텍스트(2,048토큰)를 넘었고, 잘린 응답을 검사 없이 적용했습니다.',
+        solve:'바꿀 줄 하나만 REPLACE/WITH 형식으로 받는 한 줄 교체 방식으로 바꾸고, 그 줄이 원본에 정확히 한 번 있을 때만 갈아끼웠습니다. 출력 한도를 (컨텍스트 − 입력 − 여유) 안으로 묶고, 예산이 부족하면 요청을 보내지 않고 바로 안내했습니다. CSP 때문에 new Function을 못 쓰는 확장 환경에 맞춰, 괄호·문자열·정규식이 열린 채 끝나는 코드를 직접 훑어 잡는 검사기를 만들었습니다.',
+        result:'출력이 함수 크기와 상관없이 40토큰 안쪽으로 고정됐고, 게임 3개 64개 함수에서 컨텍스트 초과 요청이 0건, 끊긴 코드 6종을 모두 차단했습니다.' },
+      { t:'대용량 로컬 모델이 다운로드 직후 실패하던 문제',
+        problem:'약 4.7GB인 7B 모델이 수십 분 동안 다운로드된 뒤, 완료 직전에 실패해 아무것도 남지 않았습니다.',
+        cause:'임시 파일을 최종 이름으로 옮길 때 파일 전체를 ArrayBuffer로 메모리에 올렸는데, 단일 ArrayBuffer 최대 크기(약 4GB)를 넘었습니다.',
+        solve:'파일을 복사하지 않고 move()로 이름만 바꾸고, 지원하지 않는 환경에서는 Blob을 넘겨 브라우저가 스트리밍하게 했습니다. 실패할 때마다 남던 0바이트 임시 파일도 지우도록 했습니다.',
+        result:'대용량 모델도 메모리에 통째로 올리지 않고 저장되며, 찌꺼기 파일이 쌓이지 않습니다.' },
+      { t:'확장 프로그램에서 생성된 게임이 실행되지 않던 문제',
+        problem:'AI가 만든 HTML 게임을 확장 프로그램 안에서 열면 스크립트가 동작하지 않았습니다.',
+        cause:"확장 페이지의 CSP(script-src 'self')가 srcdoc iframe에 상속되어 게임의 인라인 스크립트가 차단됐습니다.",
+        solve:'전용 CSP를 가진 샌드박스 페이지를 manifest에 선언하고, 준비 신호를 받은 뒤 postMessage로 게임 HTML을 보내 실행했습니다.',
+        result:'게임 코드가 확장 프로그램 권한과 분리된 채 정상적으로 실행됩니다.' },
+    ],
+    links:[],
+  },
+  {
+    id:'lidar',
+    title:'Woori-Care LiDAR',
+    type:'우리은행 × SSAFY AI-금융소비자보호 아이디어 경진대회 · 기획서', period:'2026.06', team:'3인',
+    one:'인앱 행동 로그로 고객 불만을 민원 발생 전에 감지해 대응하는 금융 소비자보호 AI 서비스 기획',
+    overview:'우리은행 민원 공시를 분석해, AI로 바꿀 수 없는 금리·한도 불만 대신 불만을 민원으로 번지게 하는 인앱 프로세스 단절을 타깃으로 정했습니다. 이미 터진 민원을 수습하는 사후 AI가 아니라, 불만이 폭발하기 전에 감지하는 선제적 AI를 제안했습니다.',
+    labels:{ features:'제안 기능', stack:'제안 기술', arch:'제안 AI 파이프라인', trouble:'기획 포인트' },
+    features:[
+      ['실시간 행동 로그 스캔','클릭스트림에서 Rage Click·U-Turn·Dead-End 시퀀스 감지'],
+      ['3-Layer 스코어링','행동 맥락 + 금융 맥락(거래 시급성) + 고객 맥락(상담 이력) 결합'],
+      ['분노 지수 산출','LSTM·XGBoost 앙상블로 0~100점 산출, 80점 초과 시 선제 조치(안내 팝업·세션 저장), 85점 초과 시 상담원 콜백'],
+      ['선제 대응 시나리오','작성 중인 신청서 세션 보존 → 비동기 접수 안내 → 선제 콜백'],
+      ['비용·인력 통제','여수신 신청서 진입 시에만 분석(On-Demand), 고위험 고객에게만 콜백 배분'],
+    ],
+    stack:{
+      Data:['민원 공시 분석','Clickstream'],
+      AI:['LSTM','XGBoost'],
+    },
+    arch:[
+      ['인앱 행동 로그 (Clickstream)',['LSTM · 비정상 행동 시퀀스','XGBoost · 3-Layer 가중치'],'분노 지수 0~100','선제 조치'],
+    ],
+    trouble:[
+      { t:'AI로 해결할 수 없는 민원이 대부분이었던 문제',
+        problem:'총 민원은 2024년 1분기 57건에서 2026년 1분기 25건으로 56.1% 줄었지만, 2026년 1분기 민원의 80%가 금리·한도 불만인 여수신 영역이었습니다.',
+        cause:'금리·한도 같은 제도적 불만은 기술로 직접 바꿀 수 없는 영역이었습니다.',
+        solve:'공시상 3건뿐인 앱 오류 민원과, 공시에 드러나지 않고 말없이 이탈하는 고객(Silent Churn)에 주목해 타깃을 인앱 프로세스 단절로 다시 정했습니다.',
+        result:'AI가 실제로 개입할 수 있는 지점으로 문제 범위를 좁혔습니다.' },
+      { t:'생성형 AI의 정보 왜곡 위험',
+        problem:'금융 안내에 AI를 쓰면 잘못된 정보를 사실처럼 답할 수 있습니다.',
+        cause:'이율·조건 안내에서 할루시네이션이 생기면 불완전판매 같은 법적 리스크로 이어집니다.',
+        solve:'생성형 LLM을 배제하고, 정형 수치와 클릭스트림 시퀀스로 판정만 하는 비생성형 모델(LSTM·XGBoost)로 설계했습니다.',
+        result:'정보 왜곡 위험을 없애면서 연산 속도와 전산 부담도 줄이는 구조로 설계했습니다.' },
+      { t:'도입 비용과 상담원 과부하 우려',
+        problem:'수백만 사용자의 앱 로그를 24시간 실시간 분석하면 서버 비용이 커지고, 불만 징후마다 콜백을 걸면 상담원이 감당할 수 없습니다.',
+        cause:'모든 화면과 모든 고객을 같은 강도로 감시하는 구조였습니다.',
+        solve:'분석 엔진은 여수신 신청서 화면에 들어왔을 때만 켜지도록(On-Demand) 하고, 80점을 넘는 불편은 안내 팝업과 세션 자동 저장으로 먼저 처리하고, 상담원 콜백은 분노 지수 85점을 넘는 고객에게만 배분하는 방식을 제안했습니다.',
+        result:'비용과 인력이 가장 시급한 순간과 고객에게만 쓰이는 구조로 제안했습니다.' },
+    ],
+    links:[],
+  },
+  {
+    id:'ratetrip',
+    title:'Rate-trip',
+    type:'SSAFY 관통 프로젝트', period:'2026.05 – 2026.06', team:'2인',
+    one:'환율 데이터를 분석해 여행자에게 환전 시점을 안내하는 AI 환율 어드바이저 웹 서비스',
+    overview:'환전 시점을 판단할 기준이 없고, 환율 정보와 여행 준비가 따로 떨어져 있는 불편에서 출발했습니다. 한국은행 ECOS 환율을 분석해 환전 타이밍을 등급으로 보여주고, 여행 준비부터 AI 상담·커뮤니티까지 하나의 흐름으로 연결했습니다.',
+    features:[
+      ['환율 조회·차트','12개 통화의 오늘 시세와 1주~1년 차트'],
+      ['환전 타이밍 등급','최근 90일 분위수와 7일 평균 추세로 지금 환전 / 분할 환전 / 지켜보기 / 비추천 안내'],
+      ['여행 바스켓','여행지 통화를 모아 관리'],
+      ['목표 환율 알림','원하는 환율에 닿으면 알림'],
+      ['AI 어드바이저','현재 환율·30일 평균·사용 목적을 바탕으로 환전 상담'],
+      ['계산기·라운지','환율 계산기, 직구 관세 계산기, 여행자 커뮤니티'],
+    ],
+    stack:{
+      Frontend:['Vue 3','Vue Router','Vite'],
+      Backend:['Django','Django REST Framework','JWT','APScheduler','Django Cache'],
+      Database:['SQLite'],
+      'External API':['한국은행 ECOS API','GMS API (LLM)'],
+      Collaboration:['Claude MCP','Jira','GitLab','Figma'],
+    },
+    arch:[
+      ['Vue 3 SPA','Django REST API',['SQLite','한국은행 ECOS API','GMS API (AI 어드바이저)']],
+    ],
+    trouble:[
+      { t:'외부 환율 API 한도·장애 때 화면이 비던 문제',
+        problem:'한국은행 ECOS API가 호출 한도에 걸리거나 응답하지 않으면 환율 화면 전체가 "Failed to fetch"로 비었습니다.',
+        cause:'요청마다 ECOS를 직접 불러 호출량이 많았고, API가 실패했을 때 대신 보여줄 데이터가 없었습니다. 인증 실패와 한도 초과도 같은 오류로 처리됐습니다.',
+        solve:'DB에 저장된 값을 먼저 쓰고 없는 통화만 API로 가져오게 했습니다. 응답은 10분 캐시하고, ECOS가 실패하면 직전 캐시(stale) → 공용 환율 API 순으로 대체했습니다. 14일 내내 값이 같은 통화는 잘못 저장된 데이터로 보고 다시 받았고, 인증 실패(502)와 한도 초과(503)는 따로 응답했습니다.',
+        result:'외부 API가 멈춰도 마지막 정상 값으로 화면이 유지되고, 반복 조회는 캐시에서 응답해 API 호출 수가 줄었습니다.' },
+      { t:'처음 실행하면 환율이 비어 있고 주말엔 데이터가 없던 문제',
+        problem:'서버를 새로 띄우면 DB가 비어 홈과 차트가 텅 빈 채로 시작했고, 주말·공휴일에는 그날 환율이 없어 화면이 비었습니다.',
+        cause:'환율은 평일에만 고시되는데, 수집을 사람이 직접 실행해야 했고 조회는 "오늘" 데이터만 찾았습니다.',
+        solve:'APScheduler로 매 영업일 오전 11시에 ECOS를 호출해 저장하고, 수집 직후 목표 환율 알림 조건을 검사하게 했습니다. 서버 시작 5초 뒤 DB가 비어 있으면 최근 영업일 데이터를 자동 수집하게 했습니다. migrate 같은 관리 명령에서는 스케줄러가 뜨지 않게 막았습니다.',
+        result:'loaddata와 runserver만으로 바로 쓸 수 있는 상태가 되고, 주말에도 가장 최근 영업일 환율이 보입니다.' },
+      { t:'AI 어드바이저 답변에 근거가 없던 문제',
+        problem:'환율 AI가 근거 없이 "지금 사라"처럼 투자 조언으로 읽히는 답을 할 수 있었습니다.',
+        cause:'모델에게 질문만 넘기면 실제 환율 데이터 없이 일반론으로 답했고, 답변의 역할 범위도 정해져 있지 않았습니다.',
+        solve:'백엔드에서 최근 30일 환율의 현재값·평균·최고·최저를 계산해 사용 목적과 함께 프롬프트에 넣었습니다. 답변 역할은 여행 환전 판단 보조로 한정하고, 응답에 면책 고지와 데이터 출처를 함께 담아 내려주게 했습니다.',
+        result:'AI 답변이 실제 환율 통계를 근거로 나오고, 투자 조언으로 오해될 여지를 줄였습니다.' },
+    ],
+    links:[],
+  },
+  {
+    id:'hearstory',
+    title:'HearStory 史談',
+    type:'SSAFY × 카카오테크 부트캠프 아이디어 해커톤 · 기획서', period:'2026.05', team:'7인',
+    one:'AI 해설사·역사 인물 페르소나와 대화하며 국가유산을 탐방하는 서비스 기획',
+    overview:'국가유산 방문객은 1,700만 명이지만 관람은 인증샷 위주로 소비되고, 지역 유산은 여전히 어려운 텍스트 안내판에 의존합니다. 정보의 불균형·소통의 단절·보상의 부재를 해결하기 위해, 탐방 전 동기 부여부터 기록·공유까지 하나의 여정으로 연결하는 서비스를 기획했습니다.',
+    labels:{ features:'제안 기능', stack:'제안 기술', arch:'제안 AI 파이프라인', trouble:'기획 포인트' },
+    features:[
+      ['AI 해설사','8종 캐릭터 중 선택, 5개 언어 음성 해설'],
+      ['문화유산 지도','GPS 기반 주변 유산 탐색과 카카오맵 핀'],
+      ['현장 인식','QR·OCR·Vision AI로 지금 보고 있는 유산 식별'],
+      ['역사 인물 대화','페르소나와 1:1 대화, 호감도에 따라 비하인드 스토리 해금'],
+      ['퀘스트·도감','유산 방문 미션, 도감 수집, 시대별 해설사 스킨'],
+      ['기록·공유','마이 타임라인과 SNS 공유'],
+    ],
+    stack:{
+      AI:['Claude API','RAG','ChromaDB','OCR API','GPT-4o Vision'],
+      'External API':['카카오맵 API','Geolocation API'],
+      Data:['국가유산포털 공공데이터'],
+    },
+    arch:[
+      ['유산 인식 (GPS · QR · OCR · Vision)','국가유산포털 DB 조회','RAG 검색 (ChromaDB)','LLM 페르소나 응답','텍스트 + 출처 표시'],
+    ],
+    trouble:[
+      { t:'역사 정보를 AI가 지어낼 위험',
+        problem:'생성형 AI가 역사 인물을 연기하면 사실이 아닌 내용을 그럴듯하게 말할 수 있습니다.',
+        cause:'역사 정보는 한 번 틀리면 서비스 전체의 신뢰가 무너집니다.',
+        solve:'국가유산포털 공공데이터를 벡터 DB에 넣고, 검색된 사료를 근거로만 답하게 하는 RAG 구조를 설계했습니다. 응답마다 출처와 신뢰도를 함께 표시하도록 설계했습니다.',
+        result:'답변의 근거를 사용자가 직접 확인할 수 있는 구조로 설계했습니다.' },
+      { t:'지역 유산에 해설 콘텐츠가 없는 문제',
+        problem:'전문 해설 인프라는 수도권 대형 박물관에 몰려 있습니다.',
+        cause:'지방 소규모 유산은 해설 콘텐츠를 새로 만들 여력이 부족합니다.',
+        solve:'현장 안내판을 OCR로 인식해 유산을 식별하고, 공공데이터와 연결해 해설을 생성하는 흐름을 설계했습니다.',
+        result:'안내판만 있으면 어느 유산이든 해설 콘텐츠로 바꿀 수 있는 구조를 제안했습니다.' },
+      { t:'길고 어려운 안내문을 읽지 않는 관람객',
+        problem:'지역 유산 안내판은 한자어와 전문 용어가 많은 긴 글이라 관람객의 흥미를 끌지 못하고, 관람이 사진 촬영 위주로 끝나기 쉽습니다.',
+        cause:'국내 숏폼 이용률이 2023년 58.1%에서 2025년 78.9%로 늘 만큼, 관람객은 짧고 쉬운 설명에 익숙해져 있었습니다.',
+        solve:'안내판을 촬영하면 AI가 핵심만 짧게 요약하고, 고른 캐릭터 해설사가 쉬운 말과 이야기로 바로 설명하는 흐름을 기획했습니다. 궁금한 점은 선택지 버튼이나 자유 질문으로 이어서 물어볼 수 있도록 화면을 설계했습니다.',
+        result:'읽어야 하는 안내문을 듣고 대화하는 해설로 바꿔, 사진 위주 관람을 이야기 중심 관람으로 바꾸는 구조를 제안했습니다.' },
+    ],
+    links:[],
+  },
+  {
+    id:'review',
+    title:'호텔 리뷰 감성분석을 통한 서비스 품질 개선 연구',
+    type:'종합설계 (졸업작품)', period:'2025.09 – 2025.11', team:'2인',
+    one:'한국어 호텔 리뷰를 감성 분류하고, 서비스 항목별 불만 요인을 추출하는 분석 시스템',
+    overview:'호텔 리뷰에는 비표준어·신조어·중의적 표현이 많아 규칙 기반이나 키워드 매칭으로는 분석이 어렵습니다. 감성 분류 모델에 토픽 모델링을 결합해, 어떤 서비스 항목에서 불만이 나오는지까지 설명할 수 있게 했습니다.',
+    labels:{ arch:'분석 파이프라인' },
+    features:[
+      ['리뷰 전처리','KIWI 형태소 분석, 강조 접두사·특수 토큰을 반영한 커스텀 불용어 사전'],
+      ['감성 분류','KoBERT 파인튜닝으로 긍정·부정 분류'],
+      ['토픽 추출','LDA로 청결·객실/설비·소음·조식·가격 5개 토픽 도출'],
+      ['토픽-감성 결합 분석','토픽별 부정 비율로 불만이 집중된 서비스 항목 확인'],
+    ],
+    stack:{
+      Language:['Python'],
+      'ML / NLP':['PyTorch','KoBERT','LDA','KIWI'],
+      Data:['Pandas','호텔 리뷰 데이터셋'],
+    },
+    arch:[
+      ['리뷰 데이터','전처리 (KIWI · 불용어 사전)',['KoBERT 감성 분류','LDA 토픽 모델링'],'토픽-감성 결합 분석'],
+    ],
+    trouble:[
+      { t:'정답 라벨이 없는 리뷰 데이터',
+        problem:'호텔 리뷰 데이터셋에서 대상 호텔만 추려 보니 평점 컬럼이 없어, 감성 분류 모델을 학습할 정답 라벨이 없었습니다.',
+        cause:'공개 리뷰 데이터셋은 리뷰 문장만 있고 긍정·부정 정답이 붙어 있지 않았습니다. 키워드 사전으로 붙인 라벨은 문맥을 놓쳤습니다.',
+        solve:'다국어 BERT 모델로 리뷰 문장을 긍정·부정·중립으로 먼저 분류해 정답 라벨로 저장하고, 경계가 애매한 중립을 빼서 이진 분류 문제로 만들었습니다. 노트북을 다시 실행해도 같은 결과가 나오도록, 추출한 리뷰를 CSV로 저장하고 텍스트 컬럼을 표준화하는 단계를 따로 두었습니다.',
+        result:'라벨 없는 데이터로도 지도학습 평가가 가능해졌고, 이후 KoBERT 분류와 토픽 결합 분석의 기준 데이터가 됐습니다.' },
+      { t:'부정 리뷰에 치우친 데이터',
+        problem:'부정 리뷰가 압도적으로 많아 모델이 한쪽으로 치우쳤습니다.',
+        cause:'클래스 불균형 상태에서 그대로 학습하면 소수 클래스를 무시하는 쪽으로 학습됩니다.',
+        solve:'Stratified Sampling으로 학습·검증 데이터의 클래스 비율을 유지하고, Weighted Cross-Entropy Loss로 소수 클래스에 가중치를 줬습니다.',
+        result:'Accuracy 0.82를 기록했고, 고객 불만을 놓치지 않는 부정 리뷰 Recall에서 높은 성능을 보였습니다.' },
+      { t:'구어체·신조어 때문에 생기는 분석 노이즈',
+        problem:'"핵-", "개-" 같은 강조 표현과 "ㅋㅋ" 같은 표현이 제대로 처리되지 않았습니다.',
+        cause:'일반 형태소 분석기와 불용어 목록은 리뷰 특유의 구어체를 다루지 못합니다.',
+        solve:'미등록어에 강한 KIWI 형태소 분석기를 쓰고, 강조 접두사와 특수 토큰의 뉘앙스를 살리는 커스텀 불용어 사전을 만들었습니다.',
+        result:'분석 노이즈가 줄고, "에어컨 소음", "침구 상태"처럼 구체적인 불만 항목이 드러났습니다.' },
+    ],
+    links:[],
+  },
+  {
+    id:'sixsigma',
+    title:'6시그마 방법론을 활용한 교내 카페 대기시간 최적화',
+    type:'6시그마개론 수업 팀 프로젝트', period:'2025.04 – 2025.06', team:'4인',
+    one:'근무하던 교내 카페의 피크타임 대기 문제를 DMAIC 방법론으로 분석한 공정 개선 프로젝트',
+    overview:'피크타임(12~16시)이 매출의 약 60%를 차지하는 교내 카페에서, 커피류 제조시간을 직접 측정해 대기 문제의 원인을 찾았습니다. 평균이 아니라 편차가 문제라고 보고 목표를 제조시간 편차 축소로 정의했습니다.',
+    labels:{ features:'주요 분석', arch:'분석 프로세스 (DMAIC)', trouble:'문제 해결' },
+    features:[
+      ['측정','커피류 제조시간 평균 90.27초, 표준편차 9.92초, 히스토그램으로 분포 확인'],
+      ['대상 선정','수요 비중이 가장 큰 커피류(62.5%)를 우선 개선 대상으로 선정'],
+      ['원인 분석','C&E Matrix로 요인 구조화, FMEA로 우선순위 도출, 가설검정으로 작업자·메뉴별 차이 확인'],
+      ['개선','편차의 주원인인 수동 탬핑을 자동 탬퍼로 대체'],
+    ],
+    stack:{
+      Methodology:['DMAIC','C&E Matrix','FMEA','가설검정'],
+      Tools:['Minitab','Excel'],
+    },
+    arch:[
+      ['Define · 피크타임 대기 문제','Measure · 제조시간 측정','Analyze · C&E · FMEA · 가설검정','Improve · 자동 탬퍼 도입'],
+    ],
+    trouble:[
+      { t:'평균은 괜찮은데 대기 불만이 큰 문제',
+        problem:'제조시간 평균은 90.27초였지만 고객 대기 불만은 계속됐습니다.',
+        cause:'표준편차가 9.92초로, 같은 메뉴도 누가 만드느냐에 따라 체감 대기가 크게 달랐습니다.',
+        solve:'목표를 "대기시간 단축"에서 "제조시간 편차 축소"로 다시 정의했습니다.',
+        result:'개선 대상을 속도가 아니라 변동 요인으로 좁힐 수 있었습니다.' },
+      { t:'여러 공정 중 원인을 특정하는 문제',
+        problem:'제조 공정이 여러 단계라 어디서 편차가 생기는지 알기 어려웠습니다.',
+        cause:'공정 중 수동 탬핑만 유일하게 작업자의 손 힘 조절에 전적으로 의존했습니다.',
+        solve:'C&E Matrix·FMEA·가설검정으로 수동 탬핑을 주원인으로 특정하고, 자동 탬핑 기기 도입을 제안했습니다.',
+        result:'측정 데이터가 매니저의 판단 근거가 되어 실제 도입됐고, 탬핑 시간이 10초에서 5초로 줄었습니다.' },
+      { t:'메뉴마다 제조시간이 달라 하나의 목표로 묶을 수 없던 문제',
+        problem:'처음에는 전 메뉴를 하나의 그래프와 목표로 합쳐 개선하려 했지만, 메뉴별 제조시간 분포가 크게 달랐습니다. 평균·표준편차가 커피 90.27초·9.92초, 티 98.2초·10.04초, 에이드 109.62초·11.2초, 라떼 119.3초·14.34초, 스무디 234.82초·31.25초였습니다.',
+        cause:'메뉴마다 제조 방법과 공정이 달라서, 한 기준으로 합치면 어느 메뉴의 문제도 제대로 드러나지 않았습니다.',
+        solve:'메뉴별로 허용 범위와 개선 목표를 따로 세운 뒤, 제조 방법이 비슷한 메뉴끼리 묶어 개선안을 만들었습니다. 커피는 자동 탬퍼로 탬핑 편차를, 티·라떼는 베이스를 미리 만들어 두는 방식으로 평균 시간을 줄이는 안을 냈습니다.',
+        result:'메뉴 성격에 맞는 개선안이 나왔고, 수요 비중이 가장 큰 커피부터 실제 장비 도입으로 이어졌습니다.' },
+    ],
+    links:[],
+  },
+  {
+    id:'erpmes',
+    award:'최우수상',
+    title:'ERP/MES 연동을 통한 생산 및 품질 관리 시스템',
+    type:'한국설비안전학회 학술대회', period:'2024.10', team:'4인',
+    one:'실제 기업(A사)의 생산·품질 관리 문제를 분석하고 ERP-MES 연동 구조를 설계한 스마트팩토리 사례 연구',
+    overview:'수주 정보 확인이 늦고, 생산계획과 검사 실적을 수기로 관리하며, 자재 위치가 자주 바뀌어 재고 파악이 어려운 A사의 문제를 분석했습니다. 신규 MES를 기존 ERP와 연동해 생산·품질 데이터를 일관되게 관리하는 구조를 설계했습니다. 2024년 10월 한국설비안전학회 학술대회에서 「A기업의 시스템 개선을 위한 생산 및 품질관리 대책 마련」을 주제로 발표해 최우수상을 받았습니다.',
+    labels:{ arch:'시스템 구조', trouble:'설계 판단' },
+    features:[
+      ['생산관리','작업지시 조회, 생산실적 등록, 가동·비가동 이력 관리'],
+      ['품질관리','수입검사·공정검사 실적 테이블화와 조회·관리 화면'],
+      ['현장 입력','PDA·바코드로 원자재 입출고와 LOT 정보를 현장에서 즉시 등록'],
+      ['재고·LOT 추적','창고 로케이션별 재고 현황, LOT별 추적'],
+      ['실시간 연동','공정검사 부적합 발생 시 ERP로 즉시 전송'],
+    ],
+    stack:{
+      System:['ERP','MES','인터페이스 테이블 (System Link)'],
+      Data:['RDBMS 테이블 설계'],
+      Device:['PDA','바코드 스캐너'],
+    },
+    arch:[
+      ['현장 PDA · 바코드','MES','System Link (인터페이스 테이블)','ERP'],
+    ],
+    trouble:[
+      { t:'ERP와 MES를 어떻게 연결할 것인가',
+        problem:'기존 ERP와 신규 MES를 연결해야 했습니다.',
+        cause:'DB를 직접 연결하면 단순하고 저렴하지만, 한쪽의 장애나 업데이트가 상대 시스템에 바로 전파됩니다.',
+        solve:'기존 ERP 데이터 오염을 막고 시스템 간 독립성을 지키기 위해 중간에 인터페이스 테이블을 두는 방식을 택했습니다.',
+        result:'데이터를 검증한 뒤 전송하는 안정적인 연동 구조를 설계했습니다.' },
+      { t:'배치 전송과 실시간 전송',
+        problem:'검사 데이터를 언제 ERP로 보낼지 정해야 했습니다.',
+        cause:'배치 전송은 서버 부담이 적지만, 부적합품이 나왔을 때 즉시 대응할 수 없습니다.',
+        solve:'후속 공정 중단이나 자재 투입 차단이 바로 가능하도록, 부적합 발생 같은 이벤트가 생기는 즉시 보내는 실시간 전송을 택했습니다.',
+        result:'실시간 실적 집계와 LOT 추적이 가능한 구조가 됐습니다.' },
+      { t:'현장 데이터가 늦고 틀리게 들어오던 문제',
+        problem:'실시간으로 전송해도 시스템에 들어오는 실적 자체가 늦고 오입력이 많으면 의미가 없었습니다.',
+        cause:'작업자가 현장에서 메모한 뒤 사무실 PC로 이동해 나중에 입력하는 방식이었습니다.',
+        solve:'바코드 스캐너가 달린 PDA로 현장에서 LOT 정보를 바로 스캔·등록하게 하고, 원자재 입출고와 재고 위치도 같은 방식으로 기록하게 설계했습니다.',
+        result:'실적이 발생한 시점에 정확한 값으로 들어오는 구조가 되어, LOT 추적과 재고 위치 파악이 가능해졌습니다.' },
+    ],
+    links:[],
+  },
+  {
+    id:'yanolja',
+    title:'야놀자 웹 크롤링 및 서귀포 호텔 시장 분석',
+    type:'데이터처리실무 수업 팀 프로젝트', period:'2023.05', team:'2인',
+    one:'숙박 플랫폼 데이터를 수집해 서귀포 지역 호텔의 가격과 평점 관계를 분석',
+    overview:'야놀자에서 서귀포 지역 숙박시설 약 200개의 가격·평점·리뷰 수·등급 데이터를 수집하고, 정제한 뒤 시각화해 가격 결정 요인을 살펴봤습니다.',
+    labels:{ arch:'데이터 파이프라인' },
+    features:[
+      ['동적 페이지 크롤링','무한 스크롤·비동기 로딩 페이지에서 숙박시설 정보 수집'],
+      ['데이터 정제','가격·평점 문자열 수치화, 결측치 제거, 극단치 분리'],
+      ['시각화','등급별 호텔 수(막대)·비율(파이), 별점-가격 산점도, 호텔 이름 워드클라우드'],
+      ['상관 분석','고평점 구간과 가격대의 관계 분석'],
+    ],
+    stack:{
+      Language:['Python'],
+      Crawling:['Selenium','정규표현식'],
+      Analysis:['Pandas','NumPy','Matplotlib','WordCloud','Excel'],
+    },
+    arch:[
+      ['야놀자 (무한 스크롤 페이지)','Selenium 크롤러','정제 (정규표현식 · 결측·극단치)','DataFrame · Excel','시각화 · 상관 분석'],
+    ],
+    trouble:[
+      { t:'HTML 파싱으로는 데이터를 가져올 수 없던 문제',
+        problem:'페이지를 요청해도 숙박시설 목록이 비어 있었습니다.',
+        cause:'목록이 무한 스크롤과 JavaScript 비동기 로딩으로 그려지는 구조였습니다.',
+        solve:'실제 브라우저처럼 스크롤하며 수집하는 Selenium 자동화 엔진을 만들고, User-Agent 가변 설정과 랜덤 지연으로 서버 부담과 차단을 피했습니다.',
+        result:'예외 처리를 보강해 중단 없이 약 200개 시설 데이터를 확보했습니다.' },
+      { t:'숫자가 문자열로 섞여 있던 문제',
+        problem:'가격과 평점에 콤마·단위·별점 기호가 섞여 있어 바로 계산할 수 없었습니다.',
+        cause:'화면 표시용 문자열을 그대로 수집했기 때문입니다.',
+        solve:'다른 지역·플랫폼에도 쓸 수 있도록 정규표현식으로 일괄 수치화하고, 가격 결측치는 값을 대체하지 않고 제거했습니다.',
+        result:'시장 가격의 사실관계를 해치지 않는 분석용 데이터셋을 만들었습니다.' },
+      { t:'워드클라우드가 한글 폰트 오류로 그려지지 않던 문제',
+        problem:'호텔 이름으로 워드클라우드를 만들자 "ValueError: Only supported for TrueType fonts" 오류가 나며 그림이 생성되지 않았습니다.',
+        cause:'WordCloud에 지정한 굴림 폰트가 여러 폰트를 묶은 컬렉션 파일(.ttc)이었고, WordCloud는 단일 TrueType 폰트만 읽을 수 있었습니다.',
+        solve:'단일 TrueType(.ttf) 한글 폰트 경로로 바꿔 지정했습니다. 그래프의 한글이 네모로 깨지는 문제도 같은 원인이어서 한글 폰트를 함께 설정했습니다.',
+        result:'호텔 이름 워드클라우드를 포함한 시각화 4종을 모두 완성했습니다.' },
+    ],
+    links:[],
+  }
+];
+
+/* 폴더 화면 이미지 (img: 첫 화면, detail: 추가 화면) */
+const COVERS = {
+  dongle:    { img:'images/dongle-thumb.jpg', video:'videos/dongle-demo.mp4' },
+  malo:      { img:'images/malo-main.jpg', video:'videos/malo-demo.mp4' },
+  qubi:      { img:'images/qubi-home.jpg' },
+  lidar:     { img:'images/lidar-cover.jpg', detail:'images/lidar-3layer.jpg' },
+  ratetrip:  { img:'images/ratetrip-home.jpg', detail:'images/ratetrip-rates.jpg' },
+  hearstory: { img:'images/hearstory-cover.jpg', detail:'images/hearstory-screens.jpg' },
+  review:    { img:'images/review-topic-chart.jpg' },
+  yanolja:   { img:'images/yanolja-scatter.jpg' },
+  sixsigma:  { img:'images/sixsigma-histogram.jpg' },
+  erpmes:    { img:'images/erpmes-cover.jpg', detail:'images/erpmes-mes-screen.jpg' },
+};
+
+/* 바탕화면 위 폴더 위치 (left %, top px) — 프로젝트 순서대로 */
+const SPOTS = [[5,48],[79,40],[14,196],[70,170],[3,410],[83,398],[18,600],[67,596],[7,738],[81,734]];
+
+/* About 아래 Dock 아이콘 */
+const DOCK = [
+  ['Py','Python','#2B5B84','#FFD43B'], ['JS','JavaScript','#F7DF1E','#1E1E1E'], ['Re','React','#20232A','#61DAFB'],
+  ['Vu','Vue 3','#35495E','#42B883'], ['Sb','Spring Boot','#1F3A2B','#6DB33F'], ['Dj','Django','#0C4B33','#FFFFFF'],
+  ['SQ','SQL · PostgreSQL','#336791','#FFFFFF'], ['3D','three.js','#111111','#FFFFFF'], ['AI','PyTorch · KoBERT','#EE4C2C','#FFFFFF'],
+  ['Mc','MCP · LangChain','#FFFFFF','#0E0E0E'],
+];
+
+/* ========================================================= */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pad = n => String(n).padStart(2,'0');
+const SHORT = { review:'호텔 리뷰 감성분석', sixsigma:'교내 카페 6시그마', erpmes:'ERP/MES 연동', yanolja:'야놀자 크롤링', lidar:'Woori-Care LiDAR' };
+const label = p => SHORT[p.id] || p.title.replace(/ — .*/,'');
+const FOLDER_SVG = (w,h) => `<svg width="${w}" height="${h}" viewBox="0 0 112 90" aria-hidden="true"><path d="M4 14a8 8 0 018-8h28l9 9h51a8 8 0 018 8v4H4z" fill="#4BA3EC"/><rect x="4" y="22" width="104" height="64" rx="8" fill="#62BBF7"/></svg>`;
+
+$('#dock').innerHTML = DOCK.map(([s,n,bg,fg]) =>
+  `<span class="dock-item" style="background:${bg};color:${fg}" tabindex="0" aria-label="${esc(n)}">${esc(s)}<span class="tip">${esc(n)}</span></span>`).join('');
+
+$('#pcount').textContent = `(${pad(PROJECTS.length)})`;
+$('#desk').insertAdjacentHTML('beforeend', PROJECTS.map((p,i) => {
+  const [l,t] = SPOTS[i] || [5 + (i%5)*18, 60 + Math.floor(i/5)*300];
+  const year = (p.period||'').slice(0,4);
+  return `<button class="folder" type="button" data-id="${p.id}" style="left:${l}%;top:${t}px;animation-delay:${(i*0.07).toFixed(2)}s" aria-label="${esc(p.title)} 열기">
+    ${p.award ? `<span class="badge">${esc(p.award)}</span>` : ''}
+    <span class="ic" style="animation-delay:${(-i*0.41).toFixed(2)}s">${FOLDER_SVG(108,87)}</span>
+    <span class="lb ko">${esc(label(p))}</span>
+    <span class="yr">${esc(year)}</span>
+  </button>`;
+}).join(''));
+
+$('#finder-side').insertAdjacentHTML('beforeend', PROJECTS.map(p =>
+  `<button type="button" data-id="${p.id}">${FOLDER_SVG(16,13)}<span>${esc(label(p))}</span></button>`).join(''));
+
+function renderDetail(p){
+  const c = COVERS[p.id] || {};
+  const L = Object.assign({ features:'주요 기능', stack:'기술 스택', arch:'아키텍처', trouble:'트러블슈팅' }, p.labels||{});
+  const facts = [['기간',p.period],['인원',p.team],['유형',p.type]]
+    .filter(r => r[1]).map(([k,v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
+  const sec = (n, t, body) => `<section class="ds"><div class="ds-h"><span class="ds-n">${n}</span><h4>${t}</h4></div>${body}</section>`;
+  const shots = c.video
+    ? `<figure><video src="${c.video}" poster="${c.img || ''}" controls playsinline preload="metadata" aria-label="${esc(p.title)} 시연 영상"></video></figure>`
+    : [c.img, c.detail].filter(Boolean).map(src => `<figure><img src="${src}" alt="${esc(p.title)} 화면" loading="lazy"></figure>`).join('');
+  const feats = `<ol class="feat">${p.features.map(([k,v]) => `<li><b>${esc(k)}</b><span>${esc(v)}</span></li>`).join('')}</ol>`;
+  const stack = `<dl class="stk">${Object.entries(p.stack).map(([k,v]) =>
+    `<div><dt>${esc(k)}</dt><dd>${v.map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</dd></div>`).join('')}</dl>`;
+  const node = n => Array.isArray(n)
+    ? `<div class="af-par">${n.map(x=>`<span class="af-node">${esc(x)}</span>`).join('')}</div>`
+    : `<span class="af-node">${esc(n)}</span>`;
+  const arch = p.arch.map(flow => `<div class="af">${flow.map(node).join('<span class="af-arrow">→</span>')}</div>`).join('');
+  const trouble = p.trouble.map((t,i) => `<div class="ts"><div class="ts-t"><span>${pad(i+1)}</span>${esc(t.t)}</div><dl>
+      <div><dt>문제</dt><dd>${esc(t.problem)}</dd></div><div><dt>원인</dt><dd>${esc(t.cause)}</dd></div>
+      <div><dt>해결</dt><dd>${esc(t.solve)}</dd></div><div><dt>결과</dt><dd>${esc(t.result)}</dd></div></dl></div>`).join('');
+  const links = (p.links||[]).length
+    ? `<ul class="lnk">${p.links.map(([k,u]) => `<li><a href="${u}" target="_blank" rel="noopener">${esc(k)} <span>${esc(u.replace(/^https?:\/\//,''))}</span> ↗</a></li>`).join('')}</ul>` : '';
+  let n = 0; const num = () => pad(++n);
+  return `<div class="dh"><div class="meta">${pad(PROJECTS.indexOf(p)+1)} / ${pad(PROJECTS.length)}</div>
+      <h3>${esc(p.title)}${p.award ? `<span class="badge">${esc(p.award)}</span>` : ''}</h3>
+      <p class="one">${esc(p.one)}</p></div>
+    <dl class="facts">${facts}</dl>
+    ${sec(num(),'소개',`<p class="ov">${esc(p.overview)}</p>${shots ? `<div class="shots">${shots}</div>` : ''}`)}
+    ${sec(num(),L.features,feats)}
+    ${sec(num(),L.stack,stack)}
+    ${sec(num(),L.arch,arch)}
+    ${sec(num(),L.trouble,trouble)}
+    ${links ? sec(num(),'링크',links) : ''}`;
+}
+
+const finder = $('#finder');
+function openProject(id){
+  const p = PROJECTS.find(x => x.id === id); if(!p) return;
+  $('#finder-title').textContent = `${p.title} — ${p.period || p.type}`;
+  $('#finder-main').innerHTML = renderDetail(p);
+  $('#finder-main').scrollTop = 0;
+  document.querySelectorAll('#finder-side button').forEach(b => b.classList.toggle('on', b.dataset.id === id));
+  if(!finder.open) finder.showModal();
+}
+$('#desk').addEventListener('click', e => { const f = e.target.closest('.folder'); if(f) openProject(f.dataset.id); });
+$('#finder-side').addEventListener('click', e => { const b = e.target.closest('button'); if(b) openProject(b.dataset.id); });
+$('#finder-close').addEventListener('click', () => finder.close());
+finder.addEventListener('close', () => finder.querySelectorAll('video').forEach(v => v.pause()));
+finder.addEventListener('click', e => { if(e.target === finder) finder.close(); });
+
+/* scroll reveal */
+const io = new IntersectionObserver(entries => entries.forEach(en => {
+  if(!en.isIntersecting) return;
+  const el = en.target;
+  el.classList.add('in');
+  if(el.hasAttribute('data-reveal-bubbles')) el.querySelectorAll('.bub').forEach((b,i) => b.style.animationDelay = (i*0.12)+'s');
+  io.unobserve(el);
+}), { threshold: 0.18 });
+document.querySelectorAll('[data-reveal],[data-reveal-bubbles],#desk').forEach(el => io.observe(el));
+
+/* 새로고침하면 항상 맨 위(About)부터 — 주소에 #projects 같은 위치가 남지 않게 */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+window.scrollTo(0, 0);
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]'); if (!a) return;
+  const id = a.getAttribute('href').slice(1);
+  const el = id && id !== 'top' ? document.getElementById(id) : null;
+  e.preventDefault();
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  else window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+const bar = $('#top-bar');
+addEventListener('scroll', () => bar.classList.toggle('scrolled', scrollY > 8), { passive:true });
+</script>
+</body>
+</html>
