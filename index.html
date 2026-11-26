@@ -153,7 +153,7 @@
   .dh h3{font-size:clamp(28px,3.4vw,40px);font-weight:600;letter-spacing:-0.04em;line-height:1.15;margin:6px 0 10px}
   .dh .one{font-size:16px;color:var(--ink-2);max-width:42em}
   .dh .badge{display:inline-block;font-size:12px;font-weight:600;background:#FFD24D;color:#5A4300;border-radius:999px;padding:1px 9px;margin-left:10px;vertical-align:8px}
-  dl.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:26px 0 8px;padding:16px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
+  dl.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0 8px;padding:16px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
   dl.facts dt{font-size:12px;color:var(--ink-3)}
   dl.facts dd{font-size:14px;margin-top:4px}
   .ds{padding:30px 0 4px;border-top:1px solid var(--line);margin-top:8px}
@@ -163,6 +163,7 @@
   .ov{font-size:15px;color:#2E2E2E;line-height:1.75}
   .shots{display:grid;gap:12px;margin-top:20px}
   .shots figure{background:var(--tile);border-radius:8px;overflow:hidden}
+  .shots video{display:block;width:100%;height:auto;background:#000}
   .feat{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .feat li{border:1px solid var(--line);border-radius:8px;padding:14px 16px}
   .feat b{display:block;font-size:14.5px;font-weight:600;margin-bottom:4px}
@@ -302,7 +303,7 @@
       <div class="block">
         <h3 data-reveal>Award &amp; Certificates</h3>
         <div class="bubbles ko" data-reveal-bubbles>
-          <span class="bub blue"><b>최우수상</b> — 한국설비안전학회 학부 논문 (2024.10)<svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 0h16L4 12z" fill="#1D6FE0"/></svg></span>
+          <span class="bub blue"><b>최우수상</b> — 한국설비안전학회 대학생 부문 (2024)<svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 0h16L4 12z" fill="#1D6FE0"/></svg></span>
           <span class="bub soft"><b>ADsP</b> — 데이터분석 준전문가<svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 0h16L12 12z" fill="#EEF4FF"/></svg></span>
           <span class="bub blue"><b>SQLD</b> — SQL 개발자<svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 0h16L4 12z" fill="#1D6FE0"/></svg></span>
           <span class="bub soft"><b>TOEIC Speaking</b> — Level 6<svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 0h16L12 12z" fill="#EEF4FF"/></svg></span>
@@ -337,7 +338,7 @@
         <div class="n">01</div>
         <div><h3>삼성청년SW·AI아카데미</h3><div class="org">SSAFY</div></div>
         <div><p>생성형 AI 작동 원리, AI 코딩 어시스턴트 활용, MCP 기반 챗봇과 AI 뉴스 큐레이션 웹 서비스 구현, LangChain·Agent, 파인튜닝, AI 거버넌스(윤리·데이터 보안)를 학습했습니다.</p></div>
-        <div class="d">2026.01 – 현재</div>
+        <div class="d">2026.01 – 2026.12</div>
       </div>
       <div class="irow ko" data-reveal>
         <div class="n">02</div>
@@ -407,33 +408,31 @@ const PROJECTS = [
   {
     id:'dongle',
     title:'동글서울',
-    type:'SSAFY 자율 프로젝트', period:'2026.10 – 현재', team:'6인',
+    type:'SSAFY 자율 프로젝트', period:'2026.10 – 2026.11', team:'6인',
     one:'실제 서울 25개 구 모양의 섬을 주민 캐릭터로 돌아다니며 명소를 구경하고 미니게임을 즐기는 3D 멀티플레이 웹 게임',
-    overview:'접속한 모든 사용자가 같은 서울섬 하나에 들어와 서로 보고, 채팅하고, 인사할 수 있습니다. 섬 곳곳의 상점에서 옷·가구·헤어·외모를 사서 꾸미고, 집을 사고 넓힐 수 있습니다.',
-    result:'실서비스 배포·운영 중',
+    overview:'접속한 모든 사용자가 같은 서울섬 하나에 들어와 서로 보고, 채팅하고, 인사할 수 있습니다. 섬 곳곳의 상점에서 옷·가구·헤어·외모를 사서 꾸미고, 집을 사고 넓힐 수 있습니다. 사람처럼 접속해 생활하는 AI 주민과, 사진이나 손그림으로 나만의 3D 자동차·탈것을 만들어 타는 기능도 있습니다.',
     features:[
-      ['3D 서울섬 탐험','실제 25개 구 모양의 섬과 명소를 three.js로 구현, 날씨 표현'],
-      ['실시간 멀티플레이','WebSocket으로 같은 섬 접속자를 보고 채팅·인사'],
-      ['미니게임 23종','주민이 준비한 미니게임과 최고 기록·랭킹'],
-      ['집 꾸미기','가구점·홈데코(벽지·바닥·창문·러그)에서 산 가구를 내 집에 바로 배치'],
-      ['캐릭터 꾸미기','옷가게·옷장, 미용실(헤어 작품 거래소), 성형외과(눈·볼·입)'],
-      ['부동산','단독주택 넓히기 5단계, 아파트·오피스텔 분양, 집 색 고르기'],
+      ['손그림 → 3D 모델','손그림 한 장을 Hunyuan3D-2mv로 3D 모델로 만들고, 게임 규격(길이·방향)에 맞추고 표면을 단순화해 자동차·총·보트로 사용'],
+      ['AI 주민 (에이전트)','목표·성향·가진 돈·최근 활동을 보고 낚시·게임·산책 같은 다음 행동을 스스로 고르는 AI 주민. 정합성과 실행 가능성을 검사한 뒤 실행하고, 결과를 경험으로 기록해 다음 판단에 사용'],
+      ['대규모 실시간 멀티플레이','하나의 공유 섬 서버에 사람과 AI 주민이 함께 접속해 서로 보고, 채팅·인사하고, 만든 자동차로 함께 달리기'],
+      ['3D 서울섬 탐험','실제 25개 구 모양의 섬과 명소를 three.js로 구현'],
+      ['미니게임 23종','아레나·레이싱 등 주민이 준비한 미니게임과 최고 기록·랭킹'],
+      ['집·캐릭터 꾸미기','가구점·홈데코, 옷가게·옷장, 미용실·성형외과에서 사서 꾸미기'],
+      ['생활·경제','낚시·농사로 돈을 벌고, 집을 사고 넓히는 부동산'],
     ],
     stack:{
-      Frontend:['React 19','Vite','three.js','JavaScript'],
-      Backend:['Spring Boot 4','Java 21','WebSocket','Flyway','JFR (성능 분석)'],
-      Database:['PostgreSQL','MinIO'],
-      Infra:['Docker Compose','Nginx','AWS EC2','GitLab CI'],
+      Frontend:['React 19','Vite','three.js','JavaScript','WebSocket'],
+      Backend:['Spring Boot 4','Java 21','Flyway'],
+      Database:['PostgreSQL','파일 저장소 (MinIO)'],
+      AI:['Hunyuan3D-2mv','trimesh','PyMeshLab','Ollama (LLM Relay)','헤드리스 브라우저 에이전트'],
+      Infra:['AWS EC2','Nginx (부하 분산)','별도 GPU PC','Docker Compose','GitLab CI'],
     },
     arch:[
-      ['React + three.js 클라이언트',['REST API','WebSocket /ws/island'],'Spring Boot 4',['PostgreSQL','MinIO 오브젝트 스토리지']],
+      ['유저 · AI 에이전트 실행기','Nginx (부하 분산)',['Main 서버 · 로그인 · 월드 · API','Mini Game 서버 · Arena · Racing'],['PostgreSQL · 계정 · 재화 · 결과','파일 저장소 · 이미지 · 3D 파일']],
+      ['손그림 업로드','3D Worker (GPU PC · Hunyuan3D)','trimesh 규격 맞추기 · PyMeshLab 단순화','three.js 렌더링','WebSocket으로 함께 달리기'],
+      ['AI 주민 판단 준비 (목표 · 성향 · 상태 · 경험)','LLM Relay (GPU PC · Ollama) 행동 선택','정합성 · 실행 가능성 검사 후 실행','결과를 경험으로 기록'],
     ],
     trouble:[
-      { t:'동시 접속 100명에서 실시간 서버 지연이 튀던 문제',
-        problem:'섬에 100명 이상이 동시에 움직이면 서버 tick 지연 p99가 60~268ms까지 튀고, 200명에서는 최대 1초 넘게 밀렸습니다. 섬 위치 송신량도 초당 약 9.7MB에 달했습니다.',
-        cause:'JFR로 분석하니 20ms 넘는 잠금 대기 1,160번 중 1,128번이 섬 객체에서 발생했습니다. 소켓 스레드마다 이동 메시지를 받자마자 섬 상태에 쓰려고 tick과 같은 잠금을 다퉜고, 모든 사람에게 모든 위치를 보내고 있었습니다.',
-        solve:'소켓 스레드는 접속별 마지막 이동 하나만 ConcurrentHashMap에 넣고, tick이 한꺼번에 반영하는 단일 작성자 구조로 바꿨습니다. 64m 격자로 거리를 나눠 가까운 사람은 10Hz, 중간은 2Hz로 보내고 먼 사람은 보내지 않게 했습니다. 부하 시나리오 도구와 tick·WebSocket 계측을 만들어 단계별로 측정했습니다.',
-        result:'tick 지연 p99가 60~268ms에서 4~42ms로, 200명에서도 4ms로 줄었습니다. 섬 송신량은 9.67MB/s에서 2.39MB/s로 줄었고, 섬 정원을 50명에서 100명으로 늘렸습니다.' },
       { t:'저사양 노트북에서 섬 화면이 버벅이던 문제',
         problem:'내장 그래픽(Intel Iris Xe)에서 시작 위치의 GPU 시간이 프레임당 25ms, 타이틀 화면은 47ms까지 걸려 화면이 끊겼습니다.',
         cause:'카메라에 보이지 않는 나무·꽃·강둑까지 매 프레임 그렸고, 먼 곳의 식물도 가까운 것과 같은 정밀도로 그렸습니다. 공유 재질 때문에 매 프레임 셰이더 프로그램을 다시 고르는 비용도 있었습니다.',
@@ -442,20 +441,15 @@ const PROJECTS = [
       { t:'처음 보는 장소에서 화면이 순간 멈추던 문제',
         problem:'게임 중 새 장소가 처음 화면에 들어올 때 391ms, 511ms씩 화면이 멈췄습니다.',
         cause:'compileAsync는 화면 셰이더만 미리 만들어서, 큰 랜드마크 지오메트리와 그림자 셰이더는 처음 보이는 프레임에 GPU로 올라가고 컴파일됐습니다.',
-        solve:'로딩 화면에서 섬 전체를 1×1 크기로 그림자와 함께 한 번 그려 GPU에 미리 올렸습니다. 섬에서 3초 내내 40fps 아래면 해상도 배율을 단계적으로 낮추게 했습니다.',
+        solve:'로딩 화면에서 섬 전체를 1×1 크기로 그림자와 함께 한 번 그려 GPU에 미리 올렸습니다.',
         result:'순간이동 11곳 측정에서 게임 중 지오메트리 업로드와 셰이더 컴파일이 0회가 됐습니다.' },
-      { t:'두 게임이 동시에 끝나면 서버가 멈추던 교착 상태',
-        problem:'같은 공동 건설 현장에 기여하는 미니게임 두 판이 동시에 끝나면, 완공도 반영 요청이 서로를 기다리며 멈췄습니다.',
-        cause:'기여 행을 먼저 INSERT하면 외래 키 때문에 현장 행에 공유 잠금이 걸리고, 두 트랜잭션이 각자 그 행에 FOR UPDATE를 요청하며 서로를 기다렸습니다.',
-        solve:'잠금 순서를 바꿔 현장 행을 먼저 FOR UPDATE로 잠근 뒤 기여 행을 넣도록 했습니다. 실제 PostgreSQL에서 도는 동시 반영 테스트로 재현하고 검증했습니다.',
-        result:'동시에 끝난 판도 순서대로 정산되어 교착이 사라졌고, 같은 문제가 다시 생기면 테스트가 잡아냅니다.' },
-      { t:'동시 요청에서 작업이 중복 처리되고 조회가 느리던 문제',
-        problem:'3D 모델 생성 작업이 동시에 들어오면 같은 작업이 두 번 처리되거나 상태가 덮어써졌고, 동시 요청에서 500 에러가 났습니다. 목록 조회는 데이터가 늘수록 느려졌습니다.',
-        cause:'작업 상태를 잠금 없이 읽고 바꿔 경쟁 조건이 생겼고, 목록 조회가 항목마다 추가 쿼리를 날리는 N+1 구조였습니다.',
-        solve:'작업 행을 잠그고 바꾸게 했고, 임대가 끝난 작업 회수는 FOR UPDATE SKIP LOCKED로 처리 중인 행을 건너뛰게 했습니다. 목록은 (created_at, id) 커서 페이지네이션과 fetch join으로 바꾸고, 활성 차량 지정은 upsert로 처리했습니다. 대기열 상한(503 + Retry-After)도 뒀습니다.',
-        result:'작업이 한 번만 처리되고 동시 요청 500이 사라졌으며, 목록 조회 쿼리 수가 데이터 양과 상관없이 일정해졌습니다.' },
+      { t:'다른 주민이 낮은 좌석에 앉으면 공중에 떠 보이던 문제',
+        problem:'같은 방에 있는 다른 주민이 방석처럼 낮은 좌석에 앉으면 허공에 떠 있는 것처럼 보였습니다.',
+        cause:'멀티플레이로 전달받은 다른 사용자의 앉은 자세를 소파·의자 기준 높이 하나로 그리고 있었습니다.',
+        solve:'전달받은 위치에서 가장 가까운 좌석의 실제 높이로 그리고, 좌석을 알 수 없을 때만 기본 높이를 쓰도록 바꿨습니다.',
+        result:'높이 0.15인 방석 같은 낮은 좌석에서도 다른 주민의 앉은 모습이 정확히 보입니다.' },
     ],
-    links:[['서비스 바로가기','https://jngbnmn.com']],
+    links:[],
   },
   {
     id:'malo',
@@ -463,7 +457,6 @@ const PROJECTS = [
     type:'SSAFY 핀테크 특화 프로젝트', period:'2026.08 – 2026.09', team:'5인',
     one:'말로 입력한 투자 아이디어를 검증 가능한 전략 규칙으로 바꾸고, 사용자가 승인한 전략만 내 PC에서 모의투자로 실행하는 개인 투자 에이전트',
     overview:'AI는 자연어를 전략 규칙(DSL)으로 바꾸는 역할만 하고, 사용자가 승인한 버전만 LLM 개입 없이 상태 머신이 여러 날 실행합니다. 토스 키·전략·데이터는 사용자 PC를 떠나지 않으며, 기본은 모의투자 모드입니다.',
-    result:'로컬 전 구간 동작 · 테스트 289개 통과',
     features:[
       ['말로 전략 만들기','채팅으로 아이디어를 말하면 AI가 전략 초안을 만들고, 승인 카드에서 확인한 뒤 등록'],
       ['전략 템플릿','이평선·눌림목·RSI·MACD 등 전략 카드 9종과 등록 폼'],
@@ -475,8 +468,8 @@ const PROJECTS = [
     stack:{
       Frontend:['React','TypeScript','Vite','Tailwind CSS v4','Vitest'],
       'CI / Build':['GitLab CI'],
-      Backend:['Spring Boot','Spring Data JPA','H2 파일 DB','SSE'],
-      AI:['MCP 도구 31종','Codex · Claude 에이전트 게이트웨이','LM Studio (로컬 폴백)'],
+      Backend:['Spring Boot','Spring Data JPA','H2 파일 DB','PostgreSQL (랭킹 서버)','SSE'],
+      AI:['MCP 도구 37종','Codex · Claude 에이전트 게이트웨이','LM Studio (로컬 폴백)'],
       'External API':['토스증권 Open API'],
     },
     arch:[
@@ -488,16 +481,16 @@ const PROJECTS = [
         cause:'두 원인이 겹쳤습니다. 장중 진행 중인 오늘 봉의 종가가 호출마다 달라 매번 "수정주가 소급"으로 오인해 캐시를 통째로 지웠고, 같은 종목 요청이 동시에 들어오면 둘 다 같은 행을 지우다 뒤쪽 삭제가 0행이 되어 실패했습니다.',
         solve:'확정된 과거 봉만 캐시에 대조·저장하고 오늘 봉은 응답 끝에만 붙였습니다. 같은 종목 요청은 종목별 락으로 줄 세우고, 트랜잭션을 락 안에서 열고 커밋까지 끝내게 했습니다. 캐시 삭제는 일괄 삭제 쿼리로, 봉마다 하던 조회 200회는 구간 조회 1회로 바꿨습니다.',
         result:'차트 500 에러가 사라졌고, 뒤 요청은 앞 요청이 채운 캐시를 써서 외부 API를 다시 부르지 않게 됐습니다.' },
-      { t:'AI 공급자 응답 하나로 앱 전체가 빈 화면이 되던 문제',
-        problem:'AI 게이트웨이가 실제로 켜져 있으면 헤더와 채팅까지 포함해 앱 전체가 흰 화면이 됐습니다.',
-        cause:'공급자 목록 API가 배열이 아니라 {default, providers[]} 객체를 주는데 배열로 가정해 providers.map에서 예외가 났습니다. 게이트웨이가 꺼져 있을 때는 항상 예외 경로로 빠져서 드러나지 않았습니다.',
-        solve:'실제 응답 형태로 타입을 고치고, 라우트 단위 에러 바운더리를 도입했습니다. 헤더와 채팅은 바운더리 밖에 두어 빠져나갈 길을 남기고, Core 꺼짐 안내를 한곳으로 모았습니다.',
-        result:'한 화면이 실패해도 다른 탭으로 이동할 수 있고, 서버가 다시 켜지면 안내가 저절로 사라집니다.' },
-      { t:'CI 빌드 검사가 이유 없이 실패하던 문제',
-        problem:'배포용 프론트 산출물이 소스와 같은지 확인하는 CI 검사가 계속 실패했는데, 산출물은 최신 상태였습니다.',
-        cause:'JS·CSS 해시는 CI와 개발 PC가 같았고, 어긋난 것은 app.html 하나의 줄바꿈이었습니다. Windows 체크아웃에서는 원본 HTML이 CRLF가 되고, Vite가 그 줄바꿈을 산출물에 그대로 옮겼습니다.',
-        solve:'.gitattributes에 frontend/*.html을 LF로 고정하고 산출물을 다시 만들었습니다. 원인이 확인된 뒤 검사의 실패 허용(allow_failure)을 떼어 실제로 막는 검사로 바꿨습니다.',
-        result:'운영체제와 상관없이 같은 산출물이 나오고, CI 빨간불이 실제 문제일 때만 뜹니다.' },
+      { t:'앱을 켤 때 등록 전 날짜까지 전략을 평가하던 문제',
+        problem:'추석 연휴 중인 일요일(9/27)에 만든 전략을, 앱을 켤 때 연휴 전 마지막 거래일(9/23) 기준으로 평가했습니다. 밀린 날을 확인해도 하루씩 밀려 같은 확인 요청이 계속 반복됐습니다.',
+        cause:'기동 시 따라잡기가 전략의 등록 시점을 모른 채 지난 거래일을 평가했고, 저장할 때 행 전체를 덮어써 일부 값이 지워질 수 있었습니다. 밀린 날 확인은 마지막 밀린 날까지만 처리해서, 확인을 요구한 그 평가일이 남아 다음 마감에 또 밀린 날로 세어졌습니다.',
+        solve:'전략에 등록 시각을 기록하고, 등록 뒤에 장이 마감된 거래일만 평가하게 했습니다(국내 15:40 이후 등록이면 그날도 제외). 그날 평가 기록이 있으면 다시 돌리지 않고, 밀린 날 확인 시에는 마감이 지난 거래일을 모두 건너뛴 뒤 다음 마감부터 다시 평가하게 했습니다. 확인 처리는 계좌 초기화와 겹치지 않게 평가 경계 안에서 실행했습니다.',
+        result:'등록 전 날짜를 평가하는 일과 같은 확인 요청이 되풀이되는 일이 사라졌습니다.' },
+      { t:'랭킹 제출 중 닉네임이 바뀌면 순위가 꼬이던 문제',
+        problem:'모의투자 결과를 랭킹 서버에 제출하는 도중 닉네임을 바꾸면 옛 이름의 행이 남아 다른 사람 기록처럼 보였습니다. 특정 문자가 들어간 닉네임은 저장 시 500 에러가 났습니다.',
+        cause:'결과 제출과 닉네임 변경이 서로를 기다리지 않아 경쟁 조건이 생겼습니다. "ß"처럼 대소문자 정규화 후 길어지는 문자는 20자 제한 키에 걸려 DB 오류로 이어졌습니다. 랭킹 서버가 느리면 Core가 닉네임 저장 잠금을 오래 쥐고 있었습니다.',
+        solve:'결과 제출 트랜잭션 안에서 프로필 행을 잠그고 닉네임을 다시 읽게 했고, 실제 PostgreSQL에서 두 방향의 경합을 재현해 확인했습니다. 정규화 후 길이가 넘는 닉네임은 400으로 거절했습니다. Core의 랭킹 서버 호출에는 연결 3초·응답 10초 타임아웃을 두고, 요청 제한(429)은 Retry-After로 "N분 뒤에 다시 해 주세요"라고 안내했습니다.',
+        result:'순위표에 잘못된 이름이 남지 않고, 서버 오류(500) 대신 명확한 입력 오류(400)로 응답하며, 외부 서버 지연이 잠금 점유로 번지지 않게 됐습니다.' },
     ],
     links:[],
   },
@@ -507,7 +500,6 @@ const PROJECTS = [
     type:'SSAFY 공통 프로젝트', period:'2026.07 – 2026.08', team:'5인',
     one:'아이디어를 말하면 AI가 HTML 미니게임을 만들어 주고, 등록·플레이·공유할 수 있는 서비스와 오프라인 Chrome 확장 프로그램',
     overview:'웹에서는 AI가 요구사항을 분석해 게임을 생성하고, Chrome 확장 프로그램에서는 브라우저 안에서 도는 로컬 모델로 인터넷 없이 게임을 수정하고 플레이할 수 있습니다.',
-    result:'웹 서비스와 Chrome 확장 프로그램 완성',
     features:[
       ['AI 게임 생성','장르·조작·목표 요구사항 분석 → 게임 설계 → HTML 게임 생성'],
       ['게임 갤러리','장르 필터 7종·정렬·카드 그리드, 검색'],
@@ -532,7 +524,7 @@ const PROJECTS = [
         problem:'브라우저 안의 0.5B 모델로 게임을 고치면 응답이 오래 걸렸고, 큰 함수에서는 생성이 중간에 끊긴 코드가 그대로 적용되어 게임이 깨졌습니다.',
         cause:'AI에게 함수 전체를 다시 쓰게 해서 출력 토큰이 함수 크기에 묶여 있었습니다(render 함수 1,607토큰). 출력 한도를 입력과 따로 계산해 컨텍스트(2,048토큰)를 넘었고, 잘린 응답을 검사 없이 적용했습니다.',
         solve:'바꿀 줄 하나만 REPLACE/WITH 형식으로 받는 한 줄 교체 방식으로 바꾸고, 그 줄이 원본에 정확히 한 번 있을 때만 갈아끼웠습니다. 출력 한도를 (컨텍스트 − 입력 − 여유) 안으로 묶고, 예산이 부족하면 요청을 보내지 않고 바로 안내했습니다. CSP 때문에 new Function을 못 쓰는 확장 환경에 맞춰, 괄호·문자열·정규식이 열린 채 끝나는 코드를 직접 훑어 잡는 검사기를 만들었습니다.',
-        result:'출력이 함수 크기와 상관없이 40토큰 안쪽으로 고정됐고, 게임 3개 64개 함수에서 컨텍스트 초과 요청이 0건, 끊긴 코드 6종을 모두 차단했습니다.' },
+        result:'출력이 함수 크기와 상관없이 40토큰 안쪽으로 고정됐고, 게임 3개의 대상 함수 66개 중 64개를 한 줄 교체로 처리하고 나머지 2개는 보내기 전에 안내해 컨텍스트 초과 요청이 0건이었으며, 끊긴 코드 6종을 모두 차단했습니다.' },
       { t:'대용량 로컬 모델이 다운로드 직후 실패하던 문제',
         problem:'약 4.7GB인 7B 모델이 수십 분 동안 다운로드된 뒤, 완료 직전에 실패해 아무것도 남지 않았습니다.',
         cause:'임시 파일을 최종 이름으로 옮길 때 파일 전체를 ArrayBuffer로 메모리에 올렸는데, 단일 ArrayBuffer 최대 크기(약 4GB)를 넘었습니다.',
@@ -552,12 +544,11 @@ const PROJECTS = [
     type:'우리은행 × SSAFY AI-금융소비자보호 아이디어 경진대회 · 기획서', period:'2026.06', team:'3인',
     one:'인앱 행동 로그로 고객 불만을 민원 발생 전에 감지해 대응하는 금융 소비자보호 AI 서비스 기획',
     overview:'우리은행 민원 공시를 분석해, AI로 바꿀 수 없는 금리·한도 불만 대신 불만을 민원으로 번지게 하는 인앱 프로세스 단절을 타깃으로 정했습니다. 이미 터진 민원을 수습하는 사후 AI가 아니라, 불만이 폭발하기 전에 감지하는 선제적 AI를 제안했습니다.',
-    result:'서비스 구조 · 리스크 대응안 기획·발표',
     labels:{ features:'제안 기능', stack:'제안 기술', arch:'제안 AI 파이프라인', trouble:'기획 포인트' },
     features:[
       ['실시간 행동 로그 스캔','클릭스트림에서 Rage Click·U-Turn·Dead-End 시퀀스 감지'],
       ['3-Layer 스코어링','행동 맥락 + 금융 맥락(거래 시급성) + 고객 맥락(상담 이력) 결합'],
-      ['분노 지수 산출','LSTM·XGBoost 앙상블로 0~100점 산출, 80점 초과 시 선제 조치'],
+      ['분노 지수 산출','LSTM·XGBoost 앙상블로 0~100점 산출, 80점 초과 시 선제 조치(안내 팝업·세션 저장), 85점 초과 시 상담원 콜백'],
       ['선제 대응 시나리오','작성 중인 신청서 세션 보존 → 비동기 접수 안내 → 선제 콜백'],
       ['비용·인력 통제','여수신 신청서 진입 시에만 분석(On-Demand), 고위험 고객에게만 콜백 배분'],
     ],
@@ -570,7 +561,7 @@ const PROJECTS = [
     ],
     trouble:[
       { t:'AI로 해결할 수 없는 민원이 대부분이었던 문제',
-        problem:'총 민원은 2년간 57건에서 25건으로 56.1% 줄었지만, 남은 민원의 80%가 금리·한도 불만인 여수신 영역이었습니다.',
+        problem:'총 민원은 2024년 1분기 57건에서 2026년 1분기 25건으로 56.1% 줄었지만, 2026년 1분기 민원의 80%가 금리·한도 불만인 여수신 영역이었습니다.',
         cause:'금리·한도 같은 제도적 불만은 기술로 직접 바꿀 수 없는 영역이었습니다.',
         solve:'공시상 3건뿐인 앱 오류 민원과, 공시에 드러나지 않고 말없이 이탈하는 고객(Silent Churn)에 주목해 타깃을 인앱 프로세스 단절로 다시 정했습니다.',
         result:'AI가 실제로 개입할 수 있는 지점으로 문제 범위를 좁혔습니다.' },
@@ -582,7 +573,7 @@ const PROJECTS = [
       { t:'도입 비용과 상담원 과부하 우려',
         problem:'수백만 사용자의 앱 로그를 24시간 실시간 분석하면 서버 비용이 커지고, 불만 징후마다 콜백을 걸면 상담원이 감당할 수 없습니다.',
         cause:'모든 화면과 모든 고객을 같은 강도로 감시하는 구조였습니다.',
-        solve:'분석 엔진은 여수신 신청서 화면에 들어왔을 때만 켜지도록(On-Demand) 하고, 단순 불편은 안내 팝업과 세션 자동 저장으로 처리하며, 상담원 콜백은 분노 지수 85점을 넘는 고객에게만 배분하는 방식을 제안했습니다.',
+        solve:'분석 엔진은 여수신 신청서 화면에 들어왔을 때만 켜지도록(On-Demand) 하고, 80점을 넘는 불편은 안내 팝업과 세션 자동 저장으로 먼저 처리하고, 상담원 콜백은 분노 지수 85점을 넘는 고객에게만 배분하는 방식을 제안했습니다.',
         result:'비용과 인력이 가장 시급한 순간과 고객에게만 쓰이는 구조로 제안했습니다.' },
     ],
     links:[],
@@ -593,7 +584,6 @@ const PROJECTS = [
     type:'SSAFY 관통 프로젝트', period:'2026.05 – 2026.06', team:'2인',
     one:'환율 데이터를 분석해 여행자에게 환전 시점을 안내하는 AI 환율 어드바이저 웹 서비스',
     overview:'환전 시점을 판단할 기준이 없고, 환율 정보와 여행 준비가 따로 떨어져 있는 불편에서 출발했습니다. 한국은행 ECOS 환율을 분석해 환전 타이밍을 등급으로 보여주고, 여행 준비부터 AI 상담·커뮤니티까지 하나의 흐름으로 연결했습니다.',
-    result:'웹 서비스 전 화면 구현 · 협업 자동화 적용',
     features:[
       ['환율 조회·차트','12개 통화의 오늘 시세와 1주~1년 차트'],
       ['환전 타이밍 등급','최근 90일 분위수와 7일 평균 추세로 지금 환전 / 분할 환전 / 지켜보기 / 비추천 안내'],
@@ -623,11 +613,11 @@ const PROJECTS = [
         cause:'환율은 평일에만 고시되는데, 수집을 사람이 직접 실행해야 했고 조회는 "오늘" 데이터만 찾았습니다.',
         solve:'APScheduler로 매 영업일 오전 11시에 ECOS를 호출해 저장하고, 수집 직후 목표 환율 알림 조건을 검사하게 했습니다. 서버 시작 5초 뒤 DB가 비어 있으면 최근 영업일 데이터를 자동 수집하게 했습니다. migrate 같은 관리 명령에서는 스케줄러가 뜨지 않게 막았습니다.',
         result:'loaddata와 runserver만으로 바로 쓸 수 있는 상태가 되고, 주말에도 가장 최근 영업일 환율이 보입니다.' },
-      { t:'협업 관리 수작업이 개발 시간을 잡아먹던 문제',
-        problem:'Jira 이슈 등록, 머지 후 완료 처리, 스프린트 정리를 매번 손으로 했고, 보드가 실제 진행 상황과 자주 어긋났습니다.',
-        cause:'커밋·머지와 이슈 상태가 연결되어 있지 않아 사람이 직접 맞춰야 했습니다.',
-        solve:'Claude를 MCP로 Jira·GitLab과 연동해 이슈 자동 생성, 머지 시점 상태 변경, 이슈 요약·분류, 스프린트 리포트 생성을 구성했습니다. 팀원의 기존 사용 방식은 그대로 두었습니다.',
-        result:'이슈 상태를 손으로 바꾸는 작업이 사라지고, 보드가 실제 개발 상황과 일치하게 됐습니다.' },
+      { t:'AI 어드바이저 답변에 근거가 없던 문제',
+        problem:'환율 AI가 근거 없이 "지금 사라"처럼 투자 조언으로 읽히는 답을 할 수 있었습니다.',
+        cause:'모델에게 질문만 넘기면 실제 환율 데이터 없이 일반론으로 답했고, 답변의 역할 범위도 정해져 있지 않았습니다.',
+        solve:'백엔드에서 최근 30일 환율의 현재값·평균·최고·최저를 계산해 사용 목적과 함께 프롬프트에 넣었습니다. 답변 역할은 여행 환전 판단 보조로 한정하고, 응답에 면책 고지와 데이터 출처를 함께 담아 내려주게 했습니다.',
+        result:'AI 답변이 실제 환율 통계를 근거로 나오고, 투자 조언으로 오해될 여지를 줄였습니다.' },
     ],
     links:[],
   },
@@ -637,7 +627,6 @@ const PROJECTS = [
     type:'SSAFY × 카카오테크 부트캠프 아이디어 해커톤 · 기획서', period:'2026.05', team:'7인',
     one:'AI 해설사·역사 인물 페르소나와 대화하며 국가유산을 탐방하는 서비스 기획',
     overview:'국가유산 방문객은 1,700만 명이지만 관람은 인증샷 위주로 소비되고, 지역 유산은 여전히 어려운 텍스트 안내판에 의존합니다. 정보의 불균형·소통의 단절·보상의 부재를 해결하기 위해, 탐방 전 동기 부여부터 기록·공유까지 하나의 여정으로 연결하는 서비스를 기획했습니다.',
-    result:'12개 화면 설계 · 8단계 기능 명세 · AI 파이프라인 설계',
     labels:{ features:'제안 기능', stack:'제안 기술', arch:'제안 AI 파이프라인', trouble:'기획 포인트' },
     features:[
       ['AI 해설사','8종 캐릭터 중 선택, 5개 언어 음성 해설'],
@@ -680,7 +669,6 @@ const PROJECTS = [
     type:'종합설계 (졸업작품)', period:'2025.09 – 2025.11', team:'2인',
     one:'한국어 호텔 리뷰를 감성 분류하고, 서비스 항목별 불만 요인을 추출하는 분석 시스템',
     overview:'호텔 리뷰에는 비표준어·신조어·중의적 표현이 많아 규칙 기반이나 키워드 매칭으로는 분석이 어렵습니다. 감성 분류 모델에 토픽 모델링을 결합해, 어떤 서비스 항목에서 불만이 나오는지까지 설명할 수 있게 했습니다.',
-    result:'Accuracy 0.82',
     labels:{ arch:'분석 파이프라인' },
     features:[
       ['리뷰 전처리','KIWI 형태소 분석, 강조 접두사·특수 토큰을 반영한 커스텀 불용어 사전'],
@@ -697,16 +685,16 @@ const PROJECTS = [
       ['리뷰 데이터','전처리 (KIWI · 불용어 사전)',['KoBERT 감성 분류','LDA 토픽 모델링'],'토픽-감성 결합 분석'],
     ],
     trouble:[
-      { t:'정답 라벨이 없는 리뷰 데이터',
-        problem:'호텔 리뷰 데이터셋에서 대상 호텔만 추려 보니 평점 컬럼이 없어, 감성 분류 모델을 학습할 정답 라벨이 없었습니다.',
-        cause:'공개 리뷰 데이터셋은 리뷰 문장만 있고 긍정·부정 정답이 붙어 있지 않았습니다. 키워드 사전으로 붙인 라벨은 문맥을 놓쳤습니다.',
-        solve:'다국어 BERT 모델로 리뷰 문장을 긍정·부정·중립으로 먼저 분류해 정답 라벨로 저장하고, 경계가 애매한 중립을 빼서 이진 분류 문제로 만들었습니다. 노트북을 다시 실행해도 같은 결과가 나오도록, 추출한 리뷰를 CSV로 저장하고 텍스트 컬럼을 표준화하는 단계를 따로 두었습니다.',
-        result:'라벨 없는 데이터로도 지도학습 평가가 가능해졌고, 이후 KoBERT 분류와 토픽 결합 분석의 기준 데이터가 됐습니다.' },
+      { t:'키워드 매칭으로는 리뷰의 문맥을 읽지 못하던 문제',
+        problem:'호텔 리뷰에는 비표준어·신조어와 중의적 표현이 많아, 단순 규칙 기반이나 키워드 매칭으로는 감성을 정확히 분류할 수 없었습니다.',
+        cause:'단어 하나하나만 보는 방식은 문장 앞뒤 맥락을 반영하지 못해, 복합적인 감성이나 구어체 표현을 잘못 해석했습니다.',
+        solve:'Transformer 기반의 양방향 문맥 이해가 필요하다고 판단해, 한국어 위키피디아 등으로 학습되어 국내 언어 구조에 맞는 KoBERT를 메인 분류 모델로 채택했습니다. 딥러닝 결과만으로는 "왜 이런 평가가 나왔는지" 설명하기 어려워, LDA로 통계적으로 유의미한 키워드 그룹(토픽)을 함께 추출해 분류 결과의 근거로 삼았습니다.',
+        result:'리뷰의 복합적 감성과 구어체 맥락을 반영해 분류하고, 그 결과를 청결·소음 같은 서비스 항목과 연결해 설명할 수 있게 됐습니다.' },
       { t:'부정 리뷰에 치우친 데이터',
         problem:'부정 리뷰가 압도적으로 많아 모델이 한쪽으로 치우쳤습니다.',
         cause:'클래스 불균형 상태에서 그대로 학습하면 소수 클래스를 무시하는 쪽으로 학습됩니다.',
         solve:'Stratified Sampling으로 학습·검증 데이터의 클래스 비율을 유지하고, Weighted Cross-Entropy Loss로 소수 클래스에 가중치를 줬습니다.',
-        result:'Accuracy 0.82를 기록했고, 고객 불만을 놓치지 않는 부정 리뷰 Recall에서 높은 성능을 보였습니다.' },
+        result:'소수인 긍정 리뷰에 가중치를 주면서도 고객 불만을 놓치지 않는 부정 리뷰 Recall은 높게 유지했고, Accuracy 0.82를 기록했습니다.' },
       { t:'구어체·신조어 때문에 생기는 분석 노이즈',
         problem:'"핵-", "개-" 같은 강조 표현과 "ㅋㅋ" 같은 표현이 제대로 처리되지 않았습니다.',
         cause:'일반 형태소 분석기와 불용어 목록은 리뷰 특유의 구어체를 다루지 못합니다.',
@@ -716,53 +704,12 @@ const PROJECTS = [
     links:[],
   },
   {
-    id:'sixsigma',
-    title:'6시그마 방법론을 활용한 교내 카페 대기시간 최적화',
-    type:'6시그마개론 수업 팀 프로젝트', period:'2025.04 – 2025.06', team:'4인',
-    one:'근무하던 교내 카페의 피크타임 대기 문제를 DMAIC 방법론으로 분석한 공정 개선 프로젝트',
-    overview:'피크타임(12~16시)이 매출의 약 60%를 차지하는 교내 카페에서, 커피류 제조시간을 직접 측정해 대기 문제의 원인을 찾았습니다. 평균이 아니라 편차가 문제라고 보고 목표를 제조시간 편차 축소로 정의했습니다.',
-    result:'자동 탬퍼 실제 도입 · 탬핑 시간 10초 → 5초',
-    labels:{ features:'주요 분석', arch:'분석 프로세스 (DMAIC)', trouble:'문제 해결' },
-    features:[
-      ['측정','커피류 제조시간 평균 90.27초, 표준편차 9.92초, 히스토그램으로 분포 확인'],
-      ['대상 선정','수요 비중이 가장 큰 커피류(62.5%)를 우선 개선 대상으로 선정'],
-      ['원인 분석','C&E Matrix로 요인 구조화, FMEA로 우선순위 도출, 가설검정으로 작업자·메뉴별 차이 확인'],
-      ['개선','편차의 주원인인 수동 탬핑을 자동 탬퍼로 대체'],
-    ],
-    stack:{
-      Methodology:['DMAIC','C&E Matrix','FMEA','가설검정'],
-      Tools:['Minitab','Excel'],
-    },
-    arch:[
-      ['Define · 피크타임 대기 문제','Measure · 제조시간 측정','Analyze · C&E · FMEA · 가설검정','Improve · 자동 탬퍼 도입'],
-    ],
-    trouble:[
-      { t:'평균은 괜찮은데 대기 불만이 큰 문제',
-        problem:'제조시간 평균은 90.27초였지만 고객 대기 불만은 계속됐습니다.',
-        cause:'표준편차가 9.92초로, 같은 메뉴도 누가 만드느냐에 따라 체감 대기가 크게 달랐습니다.',
-        solve:'목표를 "대기시간 단축"에서 "제조시간 편차 축소"로 다시 정의했습니다.',
-        result:'개선 대상을 속도가 아니라 변동 요인으로 좁힐 수 있었습니다.' },
-      { t:'여러 공정 중 원인을 특정하는 문제',
-        problem:'제조 공정이 여러 단계라 어디서 편차가 생기는지 알기 어려웠습니다.',
-        cause:'공정 중 수동 탬핑만 유일하게 작업자의 손 힘 조절에 전적으로 의존했습니다.',
-        solve:'C&E Matrix·FMEA·가설검정으로 수동 탬핑을 주원인으로 특정하고, 자동 탬핑 기기 도입을 제안했습니다.',
-        result:'측정 데이터가 매니저의 판단 근거가 되어 실제 도입됐고, 탬핑 시간이 10초에서 5초로 줄었습니다.' },
-      { t:'메뉴마다 제조시간이 달라 하나의 목표로 묶을 수 없던 문제',
-        problem:'처음에는 전 메뉴를 하나의 그래프와 목표로 합쳐 개선하려 했지만, 메뉴별 제조시간 분포가 크게 달랐습니다. 평균·표준편차가 커피 90.27초·9.92초, 티 98.2초·10.04초, 에이드 109.62초·11.2초, 라떼 119.3초·14.34초, 스무디 234.82초·31.25초였습니다.',
-        cause:'메뉴마다 제조 방법과 공정이 달라서, 한 기준으로 합치면 어느 메뉴의 문제도 제대로 드러나지 않았습니다.',
-        solve:'메뉴별로 허용 범위와 개선 목표를 따로 세운 뒤, 제조 방법이 비슷한 메뉴끼리 묶어 개선안을 만들었습니다. 커피는 자동 탬퍼로 탬핑 편차를, 티·라떼는 베이스를 미리 만들어 두는 방식으로 평균 시간을 줄이는 안을 냈습니다.',
-        result:'메뉴 성격에 맞는 개선안이 나왔고, 수요 비중이 가장 큰 커피부터 실제 장비 도입으로 이어졌습니다.' },
-    ],
-    links:[],
-  },
-  {
     id:'erpmes',
     award:'최우수상',
     title:'ERP/MES 연동을 통한 생산 및 품질 관리 시스템',
     type:'한국설비안전학회 학술대회', period:'2024.10', team:'4인',
     one:'실제 기업(A사)의 생산·품질 관리 문제를 분석하고 ERP-MES 연동 구조를 설계한 스마트팩토리 사례 연구',
-    overview:'수주 정보 확인이 늦고, 생산계획과 검사 실적을 수기로 관리하며, 자재 위치가 자주 바뀌어 재고 파악이 어려운 A사의 문제를 분석했습니다. 신규 MES를 기존 ERP와 연동해 생산·품질 데이터를 일관되게 관리하는 구조를 설계했습니다.',
-    result:'한국설비안전학회 학부 논문 경진대회 최우수상',
+    overview:'수주 정보 확인이 늦고, 생산계획과 검사 실적을 수기로 관리하며, 자재 위치가 자주 바뀌어 재고 파악이 어려운 A사의 문제를 분석했습니다. 신규 MES를 기존 ERP와 연동해 생산·품질 데이터를 일관되게 관리하는 구조를 설계했습니다. 2024년 10월 한국설비안전학회 학술대회에서 「A기업의 시스템 개선을 위한 생산 및 품질관리 대책 마련」을 주제로 발표해 최우수상을 받았습니다.',
     labels:{ arch:'시스템 구조', trouble:'설계 판단' },
     features:[
       ['생산관리','작업지시 조회, 생산실적 등록, 가동·비가동 이력 관리'],
@@ -789,7 +736,7 @@ const PROJECTS = [
         problem:'검사 데이터를 언제 ERP로 보낼지 정해야 했습니다.',
         cause:'배치 전송은 서버 부담이 적지만, 부적합품이 나왔을 때 즉시 대응할 수 없습니다.',
         solve:'후속 공정 중단이나 자재 투입 차단이 바로 가능하도록, 부적합 발생 같은 이벤트가 생기는 즉시 보내는 실시간 전송을 택했습니다.',
-        result:'실시간 실적 집계와 LOT 추적이 가능한 구조가 됐습니다.' },
+        result:'부적합이 생기는 즉시 후속 공정을 멈추거나 자재 투입을 막을 수 있는 구조가 됐습니다.' },
       { t:'현장 데이터가 늦고 틀리게 들어오던 문제',
         problem:'실시간으로 전송해도 시스템에 들어오는 실적 자체가 늦고 오입력이 많으면 의미가 없었습니다.',
         cause:'작업자가 현장에서 메모한 뒤 사무실 PC로 이동해 나중에 입력하는 방식이었습니다.',
@@ -804,13 +751,12 @@ const PROJECTS = [
     type:'데이터처리실무 수업 팀 프로젝트', period:'2023.05', team:'2인',
     one:'숙박 플랫폼 데이터를 수집해 서귀포 지역 호텔의 가격과 평점 관계를 분석',
     overview:'야놀자에서 서귀포 지역 숙박시설 약 200개의 가격·평점·리뷰 수·등급 데이터를 수집하고, 정제한 뒤 시각화해 가격 결정 요인을 살펴봤습니다.',
-    result:'숙박시설 약 200개 데이터 수집 · 시각화 4종',
     labels:{ arch:'데이터 파이프라인' },
     features:[
       ['동적 페이지 크롤링','무한 스크롤·비동기 로딩 페이지에서 숙박시설 정보 수집'],
       ['데이터 정제','가격·평점 문자열 수치화, 결측치 제거, 극단치 분리'],
       ['시각화','등급별 호텔 수(막대)·비율(파이), 별점-가격 산점도, 호텔 이름 워드클라우드'],
-      ['상관 분석','고평점 구간과 가격대의 관계 분석'],
+      ['상관 분석','5성급 호텔이 약 35%를 차지하는 서귀포 시장에서, 평점 4.5점 이상 고평점 구간과 가격대 사이의 유의미한 상관관계 확인'],
     ],
     stack:{
       Language:['Python'],
@@ -824,7 +770,7 @@ const PROJECTS = [
       { t:'HTML 파싱으로는 데이터를 가져올 수 없던 문제',
         problem:'페이지를 요청해도 숙박시설 목록이 비어 있었습니다.',
         cause:'목록이 무한 스크롤과 JavaScript 비동기 로딩으로 그려지는 구조였습니다.',
-        solve:'실제 브라우저처럼 스크롤하며 수집하는 Selenium 자동화 엔진을 만들고, User-Agent 가변 설정과 랜덤 지연으로 서버 부담과 차단을 피했습니다.',
+        solve:'실제 브라우저처럼 스크롤하며 수집하는 Selenium 자동화 엔진을 만들었습니다. 수집 전 robots.txt와 이용약관을 먼저 확인하고, 고정된 User-Agent와 요청 사이 지연으로 플랫폼 서버에 부담을 주지 않도록 속도를 스스로 제한했습니다. 차단·오류 페이지가 뜨면 즉시 멈추고 간격을 늘려 다시 시도하게 했으며, 수업 과제에 필요한 범위(서귀포 숙박시설 약 200곳)와 항목(가격·평점·리뷰 수·등급)만 수집했습니다. 수집한 데이터는 Excel로 저장해, 분석 단계에서는 사이트에 다시 접속하지 않고 작업했습니다.',
         result:'예외 처리를 보강해 중단 없이 약 200개 시설 데이터를 확보했습니다.' },
       { t:'숫자가 문자열로 섞여 있던 문제',
         problem:'가격과 평점에 콤마·단위·별점 기호가 섞여 있어 바로 계산할 수 없었습니다.',
@@ -843,15 +789,14 @@ const PROJECTS = [
 
 /* 폴더 화면 이미지 (img: 첫 화면, detail: 추가 화면) */
 const COVERS = {
-  dongle:    { img:'images/dongle-main.jpg' },
-  malo:      { img:'images/malo-landing.jpg', detail:'images/malo-app-start.jpg' },
+  dongle:    { img:'images/dongle-thumb.jpg', video:'videos/dongle-demo.mp4' },
+  malo:      { img:'images/malo-main.jpg', video:'videos/malo-demo.mp4' },
   qubi:      { img:'images/qubi-home.jpg' },
   lidar:     { img:'images/lidar-cover.jpg', detail:'images/lidar-3layer.jpg' },
   ratetrip:  { img:'images/ratetrip-home.jpg', detail:'images/ratetrip-rates.jpg' },
   hearstory: { img:'images/hearstory-cover.jpg', detail:'images/hearstory-screens.jpg' },
   review:    { img:'images/review-topic-chart.jpg' },
   yanolja:   { img:'images/yanolja-scatter.jpg' },
-  sixsigma:  { img:'images/sixsigma-histogram.jpg' },
   erpmes:    { img:'images/erpmes-cover.jpg', detail:'images/erpmes-mes-screen.jpg' },
 };
 
@@ -870,7 +815,7 @@ const DOCK = [
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const pad = n => String(n).padStart(2,'0');
-const SHORT = { review:'호텔 리뷰 감성분석', sixsigma:'교내 카페 6시그마', erpmes:'ERP/MES 연동', yanolja:'야놀자 크롤링', lidar:'Woori-Care LiDAR' };
+const SHORT = { review:'호텔 리뷰 감성분석', erpmes:'ERP/MES 연동', yanolja:'야놀자 크롤링', lidar:'Woori-Care LiDAR' };
 const label = p => SHORT[p.id] || p.title.replace(/ — .*/,'');
 const FOLDER_SVG = (w,h) => `<svg width="${w}" height="${h}" viewBox="0 0 112 90" aria-hidden="true"><path d="M4 14a8 8 0 018-8h28l9 9h51a8 8 0 018 8v4H4z" fill="#4BA3EC"/><rect x="4" y="22" width="104" height="64" rx="8" fill="#62BBF7"/></svg>`;
 
@@ -895,10 +840,12 @@ $('#finder-side').insertAdjacentHTML('beforeend', PROJECTS.map(p =>
 function renderDetail(p){
   const c = COVERS[p.id] || {};
   const L = Object.assign({ features:'주요 기능', stack:'기술 스택', arch:'아키텍처', trouble:'트러블슈팅' }, p.labels||{});
-  const facts = [['기간',p.period],['인원',p.team],['유형',p.type],['성과',p.result]]
+  const facts = [['기간',p.period],['인원',p.team],['유형',p.type]]
     .filter(r => r[1]).map(([k,v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
   const sec = (n, t, body) => `<section class="ds"><div class="ds-h"><span class="ds-n">${n}</span><h4>${t}</h4></div>${body}</section>`;
-  const shots = [c.img, c.detail].filter(Boolean).map(src => `<figure><img src="${src}" alt="${esc(p.title)} 화면" loading="lazy"></figure>`).join('');
+  const shots = c.video
+    ? `<figure><video src="${c.video}" poster="${c.img || ''}" controls playsinline preload="metadata" aria-label="${esc(p.title)} 시연 영상"></video></figure>`
+    : [c.img, c.detail].filter(Boolean).map(src => `<figure><img src="${src}" alt="${esc(p.title)} 화면" loading="lazy"></figure>`).join('');
   const feats = `<ol class="feat">${p.features.map(([k,v]) => `<li><b>${esc(k)}</b><span>${esc(v)}</span></li>`).join('')}</ol>`;
   const stack = `<dl class="stk">${Object.entries(p.stack).map(([k,v]) =>
     `<div><dt>${esc(k)}</dt><dd>${v.map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</dd></div>`).join('')}</dl>`;
@@ -936,6 +883,7 @@ function openProject(id){
 $('#desk').addEventListener('click', e => { const f = e.target.closest('.folder'); if(f) openProject(f.dataset.id); });
 $('#finder-side').addEventListener('click', e => { const b = e.target.closest('button'); if(b) openProject(b.dataset.id); });
 $('#finder-close').addEventListener('click', () => finder.close());
+finder.addEventListener('close', () => finder.querySelectorAll('video').forEach(v => v.pause()));
 finder.addEventListener('click', e => { if(e.target === finder) finder.close(); });
 
 /* scroll reveal */
