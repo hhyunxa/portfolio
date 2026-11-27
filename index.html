@@ -16,7 +16,10 @@
     --max:1320px; --pad:clamp(20px,4vw,56px);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;scroll-padding-top:64px}
+  html{scroll-behavior:smooth;scroll-padding-top:64px;scrollbar-gutter:stable}
+  /* 프로젝트 창이 열려 있으면 뒤 배경은 스크롤 안 됨 */
+  html.modal-open,html.modal-open body{overflow:hidden}
+  dialog.finder,.fmain,.fside{overscroll-behavior:contain}
   body{
     font-family:"Poppins","Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
     background:#fff;color:var(--ink);font-size:15px;line-height:1.65;letter-spacing:-0.01em;
@@ -64,7 +67,7 @@
   /* ---------- about ---------- */
   .about{display:grid;grid-template-columns:minmax(0,520px) minmax(0,1fr);gap:clamp(40px,6vw,96px);padding:clamp(48px,7vw,96px) 0 40px;align-items:start}
   .photo-col{display:flex;flex-direction:column;align-items:center;gap:28px;position:sticky;top:90px}
-  .photo{position:relative;width:min(400px,80vw);aspect-ratio:590/900}
+  .photo{position:relative;width:min(340px,70vw);aspect-ratio:590/900}
   .photo::before{content:"";position:absolute;left:8%;right:8%;bottom:2%;top:24%;background:radial-gradient(closest-side,#E8F2FF,transparent);z-index:0}
   .photo img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(20,40,80,.16))}
   .sticker{position:absolute;z-index:2;animation:bob 4.5s ease-in-out infinite}
@@ -73,7 +76,7 @@
   .sticker.s3{left:2%;top:6%;width:40px;animation:spin 10s linear infinite}
   @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
   @keyframes spin{to{transform:rotate(360deg)}}
-  .dock{display:flex;gap:7px;padding:10px 14px;background:#EEF0F3;border-radius:24px;align-items:flex-end;flex-wrap:wrap;justify-content:center;max-width:100%}
+  .dock{position:relative;z-index:3;display:flex;gap:7px;padding:10px 14px;background:#EEF0F3;border-radius:24px;align-items:flex-end;flex-wrap:wrap;justify-content:center;max-width:100%}
   .dock-item{position:relative;width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;letter-spacing:-0.02em;box-shadow:0 6px 14px -8px rgba(0,0,0,.45);transition:transform .2s cubic-bezier(.2,.7,.2,1);cursor:default}
   .dock-item:hover{transform:translateY(-10px) scale(1.22)}
   .dock-item .tip{position:absolute;bottom:52px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--ink);color:#fff;font-size:11px;font-weight:500;padding:4px 8px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .15s}
@@ -182,11 +185,60 @@
   .ts + .ts{margin-top:12px}
   .ts-t{font-size:15px;font-weight:600;letter-spacing:-0.02em;margin-bottom:12px}
   .ts-t span{font-size:11px;color:var(--ink-3);font-weight:500;margin-right:10px}
-  .ts dl{display:grid;gap:8px}
-  .ts dl > div{display:grid;grid-template-columns:44px 1fr;gap:12px}
-  .ts dt{font-size:12.5px;color:var(--ink-3);padding-top:2px}
-  .ts dd{font-size:14.5px;color:#2E2E2E;line-height:1.65}
+  .ts dl{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px}
+  .ts dt{font-size:12.5px;font-weight:600;color:var(--ink-2);margin-bottom:3px}
+  .ts dl > div:nth-child(n+3) dt{color:var(--blue)}
+  .ts dd{font-size:14px;color:#2E2E2E;line-height:1.65}
   .ts dl > div:last-child dd{color:var(--ink);font-weight:500}
+
+  /* 트러블슈팅 다이어그램 */
+  .tv{margin-top:18px;background:var(--tile);border-radius:10px;padding:clamp(10px,2vw,22px)}
+  .tv-in{background:#fff;border-radius:6px;padding:18px clamp(14px,2.4vw,26px) 20px}
+  .tv-h{font-size:15px;font-weight:700;letter-spacing:-0.02em;line-height:1.45}
+  .tv-lg{display:flex;flex-wrap:wrap;gap:4px 16px;margin:6px 0 2px;font-size:12px;color:var(--ink-2)}
+  .tv-lg i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+  .tv-lg .k-bad{background:#FDECEC;border:1.5px solid #E5484D}
+  .tv-lg .k-hi{background:var(--blue)}
+  .tv-lg .k-pre{background:#C9CED6}
+  .tv-blk{padding:16px 0 0}
+  .tv-blk + .tv-blk{margin-top:16px;border-top:1px solid var(--line)}
+  .tv-cap{font-size:13.5px;font-weight:700;margin-bottom:10px}
+  .tv-flow{display:flex;align-items:center;flex-wrap:wrap;gap:8px 6px}
+  .tv-step{background:#fff;border:1px solid #CDD3DC;border-radius:6px;padding:7px 11px;font-size:12.5px;line-height:1.45;max-width:230px}
+  .tv-step.bad{background:#FDECEC;border:1.5px solid #E5484D;color:#A51D22;font-weight:600}
+  .tv-step.bad::before{content:"✕ ";font-weight:700}
+  .tv-step.hi{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:600}
+  .tv-par{display:flex;flex-direction:column;gap:6px}
+  .tv-arr{color:#9AA3AF;font-size:13px}
+  .tv-note{margin-top:9px;font-size:12.5px;color:var(--ink-2)}
+  .tv-bars{display:grid;gap:14px}
+  .tv-bar-l{font-size:12.5px;font-weight:600;margin-bottom:5px}
+  .tv-bar{display:grid;grid-template-columns:42px 1fr;align-items:center;gap:8px;font-size:11.5px;color:var(--ink-3)}
+  .tv-bar + .tv-bar{margin-top:4px}
+  .tv-bar b{display:block;height:20px;border-radius:4px;background:#C9CED6;position:relative;min-width:4px}
+  .tv-bar.aft b{background:var(--blue)}
+  .tv-bar em{position:absolute;left:calc(100% + 8px);top:50%;transform:translateY(-50%);white-space:nowrap;font-style:normal;font-size:12px;font-weight:700;color:var(--ink)}
+  .tv-bar.aft em{color:var(--blue)}
+  .tv-bar .w{padding-right:120px}
+  .tv-share{display:flex;height:34px;border-radius:6px;overflow:hidden;font-size:12px;font-weight:600}
+  .tv-share span{display:flex;align-items:center;justify-content:center;padding:0 8px;white-space:nowrap;overflow:hidden}
+  .tv-gauge{position:relative;margin:4px 0 30px}
+  .tv-gauge .track{display:flex;height:16px;border-radius:999px;overflow:hidden}
+  .tv-gauge .tick{position:absolute;top:22px;transform:translateX(-50%);font-size:11.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+  .tv-zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+  .tv-zone{border-radius:6px;padding:8px 10px;font-size:12px;line-height:1.45;border:1px solid var(--line)}
+  .tv-zone b{display:block;font-size:12.5px;margin-bottom:2px}
+  .tv-kpi{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .tv-kpi span{font-size:12.5px;background:var(--blue-soft);color:#1D4FB0;border-radius:999px;padding:5px 12px}
+  .tv-kpi s{color:var(--ink-3)}
+  .tv-kpi strong{font-weight:700}
+  @media (max-width:640px){
+    .ts dl{grid-template-columns:1fr}
+    .tv-flow{flex-direction:column;align-items:stretch}
+    .tv-step{max-width:none}
+    .tv-arr{transform:rotate(90deg);align-self:center}
+    .tv-bar .w{padding-right:90px}
+  }
   .lnk{list-style:none;display:grid;gap:8px}
   .lnk a{display:inline-flex;gap:10px;font-size:15px;font-weight:500;border-bottom:1px solid var(--ink);padding-bottom:2px}
   .lnk a span{color:var(--ink-3);font-weight:400}
@@ -787,6 +839,187 @@ const PROJECTS = [
   }
 ];
 
+/* =========================================================
+   트러블슈팅 다이어그램 — 프로젝트 id별로 trouble 순서와 같게.
+   blocks 한 칸 = 그림 한 줄.
+     { cap, steps:[...], note }  흐름. '!' 로 시작 = 문제 지점(빨강), '+' = 바꾼 부분(파랑), 배열 = 나란히
+     { cap, bars:[{ l, v:[전,후], t:[표시 글자], n:[이름] }] }  막대 비교
+     { cap, share:[[글자, %, 배경, 글자색]] }  비율 막대
+     { cap, gauge:[[시작, 끝, 이름, 설명, 색]] }  0~100 구간
+     kpi:[[항목, 전, 후]]  어느 칸에나 붙는 수치 요약
+   ========================================================= */
+const TS_VIZ = {
+  dongle:[
+    { title:'안 보이는 곳은 건너뛰고 먼 곳은 단순하게 그려, 프레임 부담을 절반 이하로',
+      blocks:[
+        { cap:'전: 섬 전체를 매 프레임 같은 정밀도로', steps:['큰 합본 메시 하나','!카메라 밖 나무·꽃·강둑까지 그림','!먼 식물도 가까운 것과 같은 정밀도'] },
+        { cap:'후: 보이는 구역만, 거리에 맞는 정밀도로', steps:['+32칸 구역으로 나눠 카메라 컬링','+먼 구역 나무·덤불·꽃은 LOD','+해 그림자는 2프레임에 한 번','인스턴싱용 재질 분리'] },
+        { cap:'측정 결과 (Intel Iris Xe)', bars:[
+          { l:'시작 위치 · GPU 시간', v:[25,12], t:['25ms','12ms'] },
+          { l:'시작 위치 · 프레임당 삼각형', v:[599,250], t:['599만 개','250만 개'] },
+          { l:'타이틀 화면 · GPU 시간', v:[47,15], t:['47ms','15ms'] },
+          { l:'타이틀 화면 · 프레임당 삼각형', v:[1686,325], t:['1,686만 개','325만 개'] },
+        ]},
+      ]},
+    { title:'첫 등장 프레임에 몰리던 GPU 작업을 로딩 화면으로 옮겨 순간 멈춤 제거',
+      blocks:[
+        { cap:'전: compileAsync로 화면 셰이더만 미리 준비', steps:['로딩 화면 · 화면 셰이더만 컴파일','게임 시작','!새 장소 첫 등장 · 지오메트리 업로드 + 그림자 셰이더 컴파일'], note:'처음 보는 장소에서 391ms, 511ms씩 화면이 멈춤' },
+        { cap:'후: 로딩 중에 섬 전체를 한 번 미리 그림', steps:['+로딩 화면 · 섬 전체를 1×1 크기로 그림자와 함께 그림','게임 시작','새 장소 첫 등장 · 이미 GPU에 있음'],
+          kpi:[['순간이동 11곳 · 게임 중 업로드·컴파일','발생','0회']] },
+      ]},
+    { title:'고정 높이 하나 대신, 가장 가까운 좌석의 실제 높이로 앉히기',
+      blocks:[
+        { cap:'전', steps:['다른 주민의 앉은 자세 수신','소파·의자 기준 높이 하나로 그림','!방석 위에서는 공중에 떠 보임'] },
+        { cap:'후', steps:['다른 주민의 앉은 자세 수신','+전달받은 위치에서 가장 가까운 좌석 찾기','+그 좌석의 실제 높이로 그림'], note:'좌석을 알 수 없을 때만 기본 높이 사용 · 높이 0.15인 방석에서도 정확히 앉음' },
+      ]},
+  ],
+  malo:[
+    { title:'같은 종목 요청을 줄 세우고, 확정된 과거 봉만 캐시에 남겨 500 에러 제거',
+      blocks:[
+        { cap:'전: 동시에 들어온 두 요청이 같은 캐시 행을 지움', steps:['같은 종목 요청 A · B 동시 도착','!장중 오늘 봉 종가 변화 → "수정주가 소급"으로 오인','A · B가 같은 캐시 행 삭제','!뒤쪽 삭제 0행 → 500'] },
+        { cap:'후: 종목별 락 안에서 한 요청씩', steps:['+종목별 락으로 A → B 줄 세움','+확정된 과거 봉만 캐시에 대조·저장','오늘 봉은 응답 끝에만 붙임','B는 A가 채운 캐시 사용'],
+          kpi:[['봉마다 조회','200회','구간 조회 1회'],['캐시 삭제','일괄 삭제 쿼리']] },
+      ]},
+    { title:'전략 등록 시각을 기준으로, 등록 뒤 마감된 거래일만 평가',
+      blocks:[
+        { cap:'전: 등록 시점을 모른 채 지난 거래일을 평가', steps:['9/27(일, 추석 연휴) 전략 등록','앱 기동 · 따라잡기','!등록 전인 9/23 기준으로 평가','!밀린 날 확인 요청이 계속 반복'] },
+        { cap:'후: 등록 뒤 장이 마감된 거래일부터', steps:['+전략에 등록 시각 기록','+등록 뒤 마감된 거래일만 평가','그날 평가 기록이 있으면 다시 안 돌림','+밀린 날 확인 시 지난 거래일 모두 건너뜀'], note:'국내 15:40 이후 등록이면 그날도 제외' },
+      ]},
+    { title:'제출 중에는 프로필 행을 잠가 현재 닉네임으로만 기록',
+      blocks:[
+        { cap:'전: 결과 제출과 닉네임 변경이 서로를 기다리지 않음', steps:['결과 제출 시작','그 사이 닉네임 변경','!옛 이름 행이 순위표에 남음'] },
+        { cap:'후: 제출 트랜잭션 안에서 프로필 행 잠금', steps:['결과 제출 시작','+프로필 행 잠금','+닉네임 다시 읽기','현재 이름으로 기록'],
+          kpi:[['정규화 후 길이 초과 닉네임','500','400 거절'],['랭킹 서버 호출 타임아웃','연결 3초 · 응답 10초'],['요청 제한(429)','Retry-After로 "N분 뒤" 안내']] },
+      ]},
+  ],
+  qubi:[
+    { title:'함수 전체 대신 한 줄만 바꾸게 해, 출력이 함수 크기와 상관없이 짧아짐',
+      blocks:[
+        { cap:'전: AI가 함수 전체를 다시 씀', steps:['함수 전체 재작성 (render 1,607토큰)','!컨텍스트 2,048토큰 초과','!중간에 끊긴 코드를 그대로 적용'] },
+        { cap:'후: 바꿀 한 줄만 REPLACE / WITH', steps:['+한 줄 교체 요청','원본에 정확히 한 번 있을 때만 교체','+출력 한도 = 컨텍스트 − 입력 − 여유','+괄호·문자열·정규식 열림 검사','게임에 적용'] },
+        { cap:'출력 토큰', bars:[{ l:'render 함수 수정 1회', v:[1607,40], t:['1,607토큰','40토큰 안쪽'] }],
+          kpi:[['대상 함수 66개','전체 재작성','64개 한 줄 교체 · 2개 사전 안내'],['컨텍스트 초과 요청','발생','0건'],['끊긴 코드 6종','적용됨','모두 차단']] },
+      ]},
+    { title:'파일을 메모리에 올리지 않고 이름만 바꿔 대용량 모델 저장',
+      blocks:[
+        { cap:'전: 최종 이름으로 옮길 때 통째로 복사', steps:['7B 모델 약 4.7GB 다운로드 (수십 분)','!파일 전체를 ArrayBuffer로 읽음','!단일 ArrayBuffer 한계(약 4GB) 초과 → 실패','0바이트 임시 파일만 남음'] },
+        { cap:'후: 복사 없이 이동', steps:['약 4.7GB 다운로드','+move()로 이름만 변경','+미지원 환경은 Blob을 넘겨 스트리밍','+실패 시 임시 파일 삭제'] },
+      ]},
+    { title:'게임은 전용 CSP를 가진 샌드박스 페이지에서 따로 실행',
+      blocks:[
+        { cap:'전: 확장 페이지 안의 srcdoc iframe', steps:["확장 페이지 (CSP script-src 'self')",'srcdoc iframe이 CSP 상속','!게임 인라인 스크립트 차단'] },
+        { cap:'후: manifest에 샌드박스 페이지 선언', steps:['확장 페이지','+샌드박스 페이지 (전용 CSP)','+준비 신호 → postMessage로 게임 HTML 전달','게임 실행 · 확장 권한과 분리'] },
+      ]},
+  ],
+  lidar:[
+    { title:'바꿀 수 없는 금리·한도 대신, AI가 개입할 수 있는 인앱 단절로 타깃 변경',
+      blocks:[
+        { cap:'2026년 1분기 민원 구성 (총 25건)', share:[['여수신 · 금리·한도 불만 80%',80,'#C9CED6','#2E2E2E'],['그 외 20%',20,'#EEF0F3','#4D4D4D']],
+          note:'총 민원은 2024년 1분기 57건 → 2026년 1분기 25건 (56.1% 감소)' },
+        { cap:'타깃 재설정', steps:['!금리·한도 불만 · 기술로 바꿀 수 없음',['+공시상 3건뿐인 앱 오류 민원','+공시에 안 잡히는 조용한 이탈 (Silent Churn)'],'인앱 프로세스 단절을 타깃으로'] },
+      ]},
+    { title:'문장을 만들지 않고 판정만 하는 모델로 정보 왜곡 위험 차단',
+      blocks:[
+        { cap:'배제한 안: 생성형 LLM', steps:['고객 상황','LLM이 이율·조건 안내 문장 생성','!할루시네이션 → 불완전판매 리스크'] },
+        { cap:'선택한 안: 비생성형 판정 모델', steps:['정형 수치 + 클릭스트림 시퀀스','+LSTM · XGBoost가 판정만','분노 지수 0~100'], note:'정보 왜곡 위험을 없애고 연산 속도·전산 부담도 줄임' },
+      ]},
+    { title:'필요한 화면에서만 분석하고, 점수 구간에 따라 대응을 나눠 비용·인력 통제',
+      blocks:[
+        { cap:'언제 분석하나', steps:['!모든 화면 · 모든 고객 24시간 분석','+여수신 신청서 화면 진입 시에만 (On-Demand)'] },
+        { cap:'분노 지수 구간별 대응', gauge:[[0,80,'80점 이하','선제 조치 없음','#E3E7ED'],[80,85,'80점 초과','안내 팝업 · 세션 자동 저장','#8DB8F2'],[85,100,'85점 초과','상담원 콜백 배분','#1D6FE0']] },
+      ]},
+  ],
+  ratetrip:[
+    { title:'DB → 캐시 → 대체 API 순으로 받아, 외부 API가 멈춰도 화면 유지',
+      blocks:[
+        { cap:'전: 요청마다 ECOS 직접 호출', steps:['환율 요청','ECOS 직접 호출','!한도 초과 · 무응답','!화면 전체 "Failed to fetch"'] },
+        { cap:'후: 있는 데이터부터 쓰고, 실패하면 차례로 대체', steps:['환율 요청','+DB 저장값 먼저','없는 통화만 ECOS','+실패 시 직전 캐시 (stale)','+그다음 공용 환율 API'],
+          note:'응답 10분 캐시 · 14일 내내 값이 같은 통화는 다시 받음', kpi:[['인증 실패 · 한도 초과','같은 오류','502 · 503 분리']] },
+      ]},
+    { title:'영업일마다 자동 수집하고, 빈 DB는 기동 직후 채워 언제나 최근 환율 표시',
+      blocks:[
+        { cap:'전: 사람이 직접 수집, "오늘" 데이터만 조회', steps:['서버 새로 시작','!DB 비어 있음 · 홈·차트 텅 빔','!주말·공휴일엔 그날 환율 없음'] },
+        { cap:'후: 스케줄러가 수집, 최근 영업일로 조회', steps:['+서버 시작 5초 뒤 DB 비면 최근 영업일 자동 수집','+매 영업일 11:00 APScheduler 수집','수집 직후 목표 환율 알림 검사','주말엔 최근 영업일 환율 표시'],
+          note:'migrate 같은 관리 명령에서는 스케줄러가 뜨지 않게 막음 · loaddata와 runserver만으로 바로 사용' },
+      ]},
+    { title:'실제 환율 통계를 프롬프트에 넣고 역할을 좁혀, 근거 있는 답변으로',
+      blocks:[
+        { cap:'전', steps:['사용자 질문','질문만 모델에 전달','!근거 없는 "지금 사라"'] },
+        { cap:'후', steps:['사용자 질문 + 사용 목적','+백엔드가 최근 30일 현재·평균·최고·최저 계산','+역할: 여행 환전 판단 보조로 한정','답변 + 면책 고지 + 데이터 출처'] },
+      ]},
+  ],
+  hearstory:[
+    { title:'검색된 사료만 근거로 답하는 RAG 구조로 지어낸 역사 차단',
+      blocks:[
+        { cap:'위험: 생성형 AI만 쓸 때', steps:['관람객 질문','AI가 역사 인물을 연기','!사실이 아닌 내용을 그럴듯하게'] },
+        { cap:'설계: RAG', steps:['관람객 질문','+국가유산포털 공공데이터 벡터 검색 (ChromaDB)','+검색된 사료만 근거로 답변','답변 + 출처 · 신뢰도 표시'] },
+      ]},
+    { title:'안내판만 있으면 어느 유산이든 해설 콘텐츠로',
+      blocks:[
+        { cap:'현재', steps:['지방 소규모 유산','!해설 콘텐츠를 만들 여력 부족'], note:'전문 해설 인프라는 수도권 대형 박물관에 몰려 있음' },
+        { cap:'제안', steps:['현장 안내판','+OCR로 인식해 유산 식별','+공공데이터와 연결','해설 생성'] },
+      ]},
+    { title:'읽어야 하는 안내문을, 듣고 대화하는 짧은 해설로',
+      blocks:[
+        { cap:'국내 숏폼 이용률', bars:[{ l:'짧고 쉬운 설명에 익숙해진 관람객', v:[58.1,78.9], t:['58.1%','78.9%'], n:['2023','2025'] }] },
+        { cap:'전', steps:['한자어 · 전문 용어 많은 긴 안내판','!읽지 않고 사진 촬영 위주로 끝남'] },
+        { cap:'후', steps:['안내판 촬영','+AI가 핵심만 짧게 요약','+고른 캐릭터 해설사가 쉬운 말로 설명','선택지 버튼 · 자유 질문으로 이어 묻기'] },
+      ]},
+  ],
+  review:[
+    { title:'문맥을 읽는 KoBERT로 분류하고, LDA 토픽으로 "왜"를 설명',
+      blocks:[
+        { cap:'전: 단어 단위 키워드 매칭', steps:['리뷰 문장','단어 하나하나만 봄','!구어체 · 중의적 표현 오분류'] },
+        { cap:'후: 문맥 분류 + 토픽 근거', steps:['리뷰 문장',['+KoBERT · 양방향 문맥으로 긍정·부정 분류','+LDA · 청결·소음 같은 토픽 추출'],'토픽과 감성을 묶어 불만 항목 설명'] },
+      ]},
+    { title:'비율을 지켜 나누고 소수 클래스에 가중치를 줘 치우침 완화',
+      blocks:[
+        { cap:'전', steps:['부정 리뷰가 압도적인 데이터','그대로 학습','!소수 클래스(긍정)를 무시하는 쪽으로 학습'] },
+        { cap:'후', steps:['+Stratified Sampling · 학습/검증 클래스 비율 유지','+Weighted Cross-Entropy · 소수 클래스 가중치','학습'],
+          kpi:[['Accuracy','0.82'],['부정 리뷰 Recall','높게 유지']] },
+      ]},
+    { title:'리뷰 말투에 맞춘 형태소 분석기와 불용어 사전으로 노이즈 감소',
+      blocks:[
+        { cap:'전', steps:['"핵-" · "개-" · "ㅋㅋ"','일반 형태소 분석기 · 기본 불용어','!뉘앙스 손실 · 분석 노이즈'] },
+        { cap:'후', steps:['"핵-" · "개-" · "ㅋㅋ"','+KIWI (미등록어에 강함)','+강조 접두사·특수 토큰을 살린 커스텀 불용어 사전','"에어컨 소음" · "침구 상태" 같은 불만 항목'] },
+      ]},
+  ],
+  erpmes:[
+    { title:'DB 직접 연결 대신 인터페이스 테이블을 두어 시스템 간 독립성 확보',
+      blocks:[
+        { cap:'대안: DB 직접 연결', steps:['MES','ERP DB에 직접 연결','!한쪽 장애·업데이트가 바로 전파'], note:'단순하고 저렴하지만 ERP 데이터 오염 위험' },
+        { cap:'선택: 인터페이스 테이블', steps:['MES','+System Link (인터페이스 테이블)','+검증 후 전송','ERP'] },
+      ]},
+    { title:'부적합이 나오는 즉시 ERP로 보내 후속 공정을 바로 멈춤',
+      blocks:[
+        { cap:'대안: 배치 전송', steps:['부적합 발생','정해진 시점에 모아서 전송','!즉시 대응 불가'], note:'서버 부담은 적음' },
+        { cap:'선택: 실시간 전송', steps:['부적합 발생','+즉시 ERP 전송',['후속 공정 중단','자재 투입 차단']] },
+      ]},
+    { title:'현장에서 바로 스캔해, 실적이 생긴 시점에 정확한 값으로 입력',
+      blocks:[
+        { cap:'전', steps:['현장에서 메모','사무실 PC로 이동','!나중에 입력 → 지연 · 오입력'] },
+        { cap:'후', steps:['+바코드 PDA로 현장에서 스캔',['+LOT 정보 등록','+원자재 입출고 · 재고 위치 기록'],'LOT 추적 · 재고 위치 파악'] },
+      ]},
+  ],
+  yanolja:[
+    { title:'정적 HTML 대신 실제 브라우저로 스크롤하며, 서버 부담 없게 수집',
+      blocks:[
+        { cap:'전: HTML 요청', steps:['페이지 요청','!JavaScript 비동기 로딩 전 상태','!숙박시설 목록 비어 있음'] },
+        { cap:'후: Selenium 자동화', steps:['robots.txt · 이용약관 확인','+브라우저처럼 스크롤하며 수집','+요청 사이 지연 · 차단 시 멈추고 간격 늘려 재시도','약 200곳 · 필요한 4개 항목만','Excel 저장 → 분석은 재접속 없이'] },
+      ]},
+    { title:'표시용 문자열을 정규표현식으로 일괄 수치화',
+      blocks:[
+        { cap:'전', steps:['콤마 · 단위 · 별점 기호가 섞인 가격·평점','!바로 계산 불가'] },
+        { cap:'후', steps:['+정규표현식으로 일괄 수치화','+가격 결측치는 대체 없이 제거','분석용 데이터셋'], note:'다른 지역 · 플랫폼에도 같은 규칙 재사용 가능' },
+      ]},
+    { title:'컬렉션(.ttc) 대신 단일 TrueType(.ttf) 한글 폰트 지정',
+      blocks:[
+        { cap:'전', steps:['굴림 (.ttc 폰트 컬렉션)','WordCloud','!ValueError: Only supported for TrueType fonts'] },
+        { cap:'후', steps:['+단일 한글 TrueType (.ttf)',['WordCloud','Matplotlib 그래프'],'워드클라우드 포함 시각화 4종 완성'] },
+      ]},
+  ],
+};
+
 /* 폴더 화면 이미지 (img: 첫 화면, detail: 추가 화면) */
 const COVERS = {
   dongle:    { img:'images/dongle-thumb.jpg', video:'videos/dongle-demo.mp4' },
@@ -837,6 +1070,42 @@ $('#desk').insertAdjacentHTML('beforeend', PROJECTS.map((p,i) => {
 $('#finder-side').insertAdjacentHTML('beforeend', PROJECTS.map(p =>
   `<button type="button" data-id="${p.id}">${FOLDER_SVG(16,13)}<span>${esc(label(p))}</span></button>`).join(''));
 
+/* 트러블슈팅 다이어그램 그리기 (데이터: TS_VIZ) */
+function vStep(s){
+  if (Array.isArray(s)) return `<div class="tv-par">${s.map(vStep).join('')}</div>`;
+  const cls = s[0] === '!' ? ' bad' : s[0] === '+' ? ' hi' : '';
+  return `<span class="tv-step${cls}">${esc(cls ? s.slice(1) : s)}</span>`;
+}
+function vBlock(b){
+  let body = '';
+  if (b.steps) body = `<div class="tv-flow">${b.steps.map(vStep).join('<span class="tv-arr" aria-hidden="true">→</span>')}</div>`;
+  else if (b.bars) body = `<div class="tv-bars">${b.bars.map(r => {
+      const m = Math.max(...r.v);
+      return `<div><div class="tv-bar-l">${esc(r.l)}</div>${r.v.map((v,i) =>
+        `<div class="tv-bar${i ? ' aft' : ''}"><span>${esc((r.n || ['전','후'])[i])}</span><div class="w"><b style="width:${Math.max(v/m*100,1)}%"><em>${esc(r.t[i])}</em></b></div></div>`).join('')}</div>`;
+    }).join('')}</div>`;
+  else if (b.share) body = `<div class="tv-share">${b.share.map(([t,pc,bg,fg]) =>
+      `<span style="width:${pc}%;background:${bg};color:${fg}">${esc(t)}</span>`).join('')}</div>`;
+  else if (b.gauge) {
+    const ticks = [...new Set(b.gauge.flatMap(([f,t]) => [f,t]))];
+    body = `<div class="tv-gauge"><div class="track">${b.gauge.map(([f,t,,,c]) => `<span style="width:${t-f}%;background:${c}"></span>`).join('')}</div>
+      ${ticks.map(v => `<span class="tick" style="left:${v}%">${v}</span>`).join('')}</div>
+      <div class="tv-zones">${b.gauge.map(([,,l,d,c]) => `<div class="tv-zone" style="border-left:4px solid ${c}"><b>${esc(l)}</b>${esc(d)}</div>`).join('')}</div>`;
+  }
+  if (b.kpi) body += `<div class="tv-kpi">${b.kpi.map(k => k.length === 3
+      ? `<span>${esc(k[0])} <s>${esc(k[1])}</s> → <strong>${esc(k[2])}</strong></span>`
+      : `<span>${esc(k[0])} <strong>${esc(k[1])}</strong></span>`).join('')}</div>`;
+  return `<div class="tv-blk">${b.cap ? `<div class="tv-cap">${esc(b.cap)}</div>` : ''}${body}${b.note ? `<p class="tv-note">${esc(b.note)}</p>` : ''}</div>`;
+}
+function renderViz(v){
+  if (!v) return '';
+  const all = JSON.stringify(v.blocks);
+  const lg = [all.includes('"!') && '<span><i class="k-bad"></i>문제 지점</span>',
+              all.includes('"+') && '<span><i class="k-hi"></i>바꾼 부분</span>'].filter(Boolean).join('');
+  return `<figure class="tv"><div class="tv-in"><div class="tv-h">${esc(v.title)}</div>${lg ? `<div class="tv-lg">${lg}</div>` : ''}
+    ${v.blocks.map(vBlock).join('')}</div></figure>`;
+}
+
 function renderDetail(p){
   const c = COVERS[p.id] || {};
   const L = Object.assign({ features:'주요 기능', stack:'기술 스택', arch:'아키텍처', trouble:'트러블슈팅' }, p.labels||{});
@@ -855,7 +1124,8 @@ function renderDetail(p){
   const arch = p.arch.map(flow => `<div class="af">${flow.map(node).join('<span class="af-arrow">→</span>')}</div>`).join('');
   const trouble = p.trouble.map((t,i) => `<div class="ts"><div class="ts-t"><span>${pad(i+1)}</span>${esc(t.t)}</div><dl>
       <div><dt>문제</dt><dd>${esc(t.problem)}</dd></div><div><dt>원인</dt><dd>${esc(t.cause)}</dd></div>
-      <div><dt>해결</dt><dd>${esc(t.solve)}</dd></div><div><dt>결과</dt><dd>${esc(t.result)}</dd></div></dl></div>`).join('');
+      <div><dt>해결</dt><dd>${esc(t.solve)}</dd></div><div><dt>결과</dt><dd>${esc(t.result)}</dd></div></dl>
+      ${renderViz((TS_VIZ[p.id]||[])[i])}</div>`).join('');
   const links = (p.links||[]).length
     ? `<ul class="lnk">${p.links.map(([k,u]) => `<li><a href="${u}" target="_blank" rel="noopener">${esc(k)} <span>${esc(u.replace(/^https?:\/\//,''))}</span> ↗</a></li>`).join('')}</ul>` : '';
   let n = 0; const num = () => pad(++n);
@@ -878,12 +1148,15 @@ function openProject(id){
   $('#finder-main').innerHTML = renderDetail(p);
   $('#finder-main').scrollTop = 0;
   document.querySelectorAll('#finder-side button').forEach(b => b.classList.toggle('on', b.dataset.id === id));
-  if(!finder.open) finder.showModal();
+  if(!finder.open){ finder.showModal(); document.documentElement.classList.add('modal-open'); }
 }
 $('#desk').addEventListener('click', e => { const f = e.target.closest('.folder'); if(f) openProject(f.dataset.id); });
 $('#finder-side').addEventListener('click', e => { const b = e.target.closest('button'); if(b) openProject(b.dataset.id); });
 $('#finder-close').addEventListener('click', () => finder.close());
-finder.addEventListener('close', () => finder.querySelectorAll('video').forEach(v => v.pause()));
+finder.addEventListener('close', () => {
+  finder.querySelectorAll('video').forEach(v => v.pause());
+  document.documentElement.classList.remove('modal-open');
+});
 finder.addEventListener('click', e => { if(e.target === finder) finder.close(); });
 
 /* scroll reveal */
